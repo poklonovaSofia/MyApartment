@@ -28,4 +28,36 @@ public class CreateDb {
         }
 
     }
+    public void createTableApartments() throws SQLException {
+        String queryCreateTable = "CREATE TABLE IF NOT EXISTS apartments ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "title TEXT UNIQUE NOT NULL,"
+                + "description TEXT NOT NULL,"
+                + "idUser INTEGER NOT NULL,"
+                + "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+                + "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
+
+        try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate(queryCreateTable);
+
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+        }
+    }
+    public void createTableTypesOfRooms() throws SQLException {
+        String queryCreateTable = "CREATE TABLE IF NOT EXISTS typesOfRooms ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "typeOfRoom TEXT UNIQUE NOT NULL)";
+
+        try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate(queryCreateTable);
+
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+
+        }
+        //FillDb fillDb=new FillDb();
+        //fillDb.insertTypesOfRooms();
+
+    }
 }

@@ -11,29 +11,38 @@ import java.sql.SQLException;
 
 public class UserModel {
     Connection connection;
-    public void addUser(User user) throws UserNotAddedException {
+    public User addUser(User user) throws UserNotAddedException {
         connection= DbConnection.getDatabaseConnection().getConnection();
         String sql = "INSERT INTO users(username, password, email) VALUES(?,?,?)";
+        int userId = -1;
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getPassword());
             pstmt.setString(3, user.getEmail());
             pstmt.executeUpdate();
+            ResultSet generatedKeys = pstmt.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                user.setId(generatedKeys.getInt(1));
+
+            } else {
+                throw new SQLException("Failed to retrieve user ID after insertion");
+            }
         } catch (SQLException e) {
 
             throw new UserNotAddedException("Failed to create user");
         }
+        return null;
     }
-    public int getUserByUsernameEmail(User user) {
+    public int getIdUserByUsernameEmail(User user) {
         connection= DbConnection.getDatabaseConnection().getConnection();
-        String sql = "SELECT COUNT(*) AS total FROM users WHERE username = ? OR email = ?";
+        String sql = "SELECT id  FROM users WHERE username = ? OR email = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getEmail());
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("total");
+                return rs.getInt("id");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -43,13 +52,14 @@ public class UserModel {
 
     public User findUser(User user) {
         connection= DbConnection.getDatabaseConnection().getConnection();
-        String sql = "SELECT username FROM users WHERE email = ? AND password = ?";
+        String sql = "SELECT username, id FROM users WHERE email = ? AND password = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, user.getEmail());
             pstmt.setString(2, user.getPassword());
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 user.setUsername(rs.getString("username"));
+                user.setId(rs.getInt("id"));
                 return user;
             }
         } catch (SQLException e) {

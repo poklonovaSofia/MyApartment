@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: f2b5d4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateSettingsModeController">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: f2b5d4; -fx-border-color: f7d6e0; -fx-border-width: 10;" VBox.vgrow="ALWAYS">
+            <children>
+                <Label layoutX="27.0" layoutY="20.0" text="Create new apartment">
+                    <font>
+                        <Font name="Segoe Print" size="14.0" />
+                    </font>
+                </Label>
+                <Separator layoutX="29.0" layoutY="49.0" prefHeight="3.0" prefWidth="194.0" style="-fx-background-color: eff7f6;" />
+                <Label layoutX="27.0" layoutY="75.0" text="Name">
+                    <font>
+                        <Font name="Segoe Print" size="14.0" />
+                    </font>
+                </Label>
+                <TextField layoutX="81.0" layoutY="70.0" promptText="example">
+                    <font>
+                        <Font name="Segoe Print" size="14.0" />
+                    </font>
+                </TextField>
+                <Label layoutX="30.0" layoutY="141.0" text="Description" textFill="#9e9d9d">
+                    <font>
+                        <Font name="Segoe Print" size="14.0" />
+                    </font>
+                </Label>
+                <Separator layoutX="30.0" layoutY="113.0" prefHeight="3.0" prefWidth="497.0" style="-fx-background-color: eff7f6;" />
+                <TextArea layoutX="118.0" layoutY="133.0" prefHeight="39.0" prefWidth="426.0">
+                    <font>
+                        <Font name="Segoe Print" size="11.0" />
+                    </font>
+                </TextArea>
+                <ListView fx:id="roomsTypesList" layoutX="27.0" layoutY="217.0" onMouseClicked="#onItemClicked" prefHeight="252.0" prefWidth="194.0" style="-fx-font-family: 'Segoe Print'; -fx-font-size: 12px;" stylesheets="@../styles/styles.css" />
+                <Label layoutX="28.0" layoutY="191.0" text="Room types">
+                    <font>
+                        <Font name="Segoe Print" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="250.0" layoutY="191.0" text="Added rooms">
+                    <font>
+                        <Font name="Segoe Print" size="14.0" />
+                    </font>
+                </Label>
+                <Button layoutX="545.0" layoutY="464.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="86.0" style="-fx-background-color: eff7f6;" text="Create">
+                    <font>
+                        <Font name="Segoe Print" size="16.0" />
+                    </font>
+                    <effect>
+                        <DropShadow spread="0.21">
+                            <color>
+                                <Color red="0.9686274528503418" green="0.8392156958580017" blue="0.8784313797950745" />
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Button>
+                <Button layoutX="665.0" layoutY="464.0" mnemonicParsing="false" onAction="#clickedCancel" prefHeight="41.0" prefWidth="86.0" style="-fx-background-color: eff7f6;" text="Cancel">
+                    <font>
+                        <Font name="Segoe Print" size="16.0" />
+                    </font>
+                    <effect>
+                        <DropShadow spread="0.21">
+                            <color>
+                                <Color red="0.9686274528503418" green="0.8392156958580017" blue="0.8784313797950745" />
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Button>
+                <ListView fx:id="usersRoomsList" layoutX="250.0" layoutY="217.0" onMouseClicked="#ItemDoubleClick" prefHeight="252.0" prefWidth="194.0" style="-fx-font-family: 'Segoe Print'; -fx-font-size: 12px;" stylesheets="@../styles/styles.css" />
+            <Label layoutX="279.0" layoutY="76.0" textFill="#eff7f6">
+               <font>
+                  <Font name="Segoe Print" size="12.0" />
+               </font>
+            </Label>
+            <TextField layoutX="471.0" layoutY="217.0" promptText="room">
+               <font>
+                  <Font name="Segoe Print" size="12.0" />
+               </font>
+            </TextField>
+            <Button layoutX="639.0" layoutY="219.0" mnemonicParsing="false" style="-fx-background-color: eff7f6;" text="Rename">
+               <font>
+                  <Font name="Segoe Print" size="12.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.9312000274658203" green="0.9599999785423279" blue="0.9561600089073181" opacity="0.5" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            </children>
+        </AnchorPane>
+    </children>
+
+</AnchorPane>

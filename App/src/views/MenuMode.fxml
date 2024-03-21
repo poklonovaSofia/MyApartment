@@ -4,11 +4,12 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="530" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuModeController">
+<BorderPane fx:id="mainPane" prefHeight="530" prefWidth="800.0" style="-fx-background-color: f2b5d4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuModeController">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: f2b5d4; -fx-border-color: f7d6e0; -fx-border-width: 5;" VBox.vgrow="ALWAYS">
             <children>
@@ -33,7 +34,7 @@
                         </DropShadow>
                     </effect>
                     <children>
-                        <AnchorPane layoutX="8.8" layoutY="8.8" prefHeight="118.0" prefWidth="138.0" style="-fx-background-color: #daf4f1;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0">
+                        <AnchorPane layoutX="8.8" layoutY="8.8" onMouseClicked="#clickedOnCreatePane" prefHeight="118.0" prefWidth="138.0" style="-fx-background-color: #daf4f1;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0">
                             <effect>
                                 <DropShadow spread="0.36">
                                     <color>
@@ -183,4 +184,4 @@
     <effect>
         <DropShadow />
     </effect>
-</AnchorPane>
+</BorderPane>

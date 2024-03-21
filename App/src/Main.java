@@ -32,6 +32,8 @@ public class Main extends Application {
     private void createDatabase() throws SQLException {
         CreateDb createDb = new CreateDb();
         createDb.createTableUsers();
+        createDb.createTableApartments();
+        createDb.createTableTypesOfRooms();
     }
     private void launchApplication(String[] args) {
         launch(args);

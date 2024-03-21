@@ -1,0 +1,15 @@
+#roomsTypesList .list-cell:odd {
+    -fx-background-color: #eff7f6;
+
+}
+
+#roomsTypesList .list-cell:even {
+    -fx-background-color: #cef5ef;
+}
+#usersRoomsList .list-cell:odd {
+    -fx-background-color: #cef5ef;
+}
+
+#usersRoomsList .list-cell:even {
+    -fx-background-color: #eff7f6;
+}

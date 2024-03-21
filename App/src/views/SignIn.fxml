@@ -10,43 +10,43 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignInController">
+<BorderPane fx:id="mainPane" prefHeight="530.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignInController">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: eff7f6;" VBox.vgrow="ALWAYS">
             <children>
-                <AnchorPane layoutX="416.0" prefHeight="400.0" prefWidth="225.0" style="-fx-background-color: f2b5d4;">
+                <AnchorPane layoutX="554.0" prefHeight="530.0" prefWidth="248.0" style="-fx-background-color: f2b5d4;">
                     <children>
-                        <Label layoutX="44.0" layoutY="81.0" text="Welcome Back!">
+                        <Label layoutX="33.0" layoutY="93.0" text="Welcome Back!">
                             <font>
-                                <Font name="Segoe Print" size="18.0" />
+                                <Font name="Segoe Print" size="24.0" />
                             </font>
                         </Label>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="418.0" style="-fx-background-color: eff7f6;">
+                <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="530.0" prefWidth="554.0" style="-fx-background-color: eff7f6;">
                     <children>
-                        <Label layoutX="189.0" layoutY="87.0" text="Hello!">
+                        <Label layoutX="242.0" layoutY="97.0" text="Hello!">
                             <font>
-                                <Font name="Segoe Print" size="18.0" />
+                                <Font name="Segoe Print" size="24.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="fieldEmail" layoutX="89.0" layoutY="137.0" prefHeight="26.0" prefWidth="250.0" promptText="Email">
+                        <TextField fx:id="fieldEmail" layoutX="151.0" layoutY="179.0" prefHeight="26.0" prefWidth="250.0" promptText="Email">
                             <effect>
                                 <DropShadow />
                             </effect>
                             <font>
-                                <Font name="Segoe Print" size="12.0" />
+                                <Font name="Segoe Print" size="14.0" />
                             </font>
                         </TextField>
-                        <TextField fx:id="fieldPassword" layoutX="89.0" layoutY="185.0" prefHeight="26.0" prefWidth="250.0" promptText="Password">
+                        <TextField fx:id="fieldPassword" layoutX="151.0" layoutY="227.0" prefHeight="26.0" prefWidth="250.0" promptText="Password">
                             <effect>
                                 <DropShadow />
                             </effect>
                             <font>
-                                <Font name="Segoe Script" size="12.0" />
+                                <Font name="Segoe Script" size="14.0" />
                             </font>
                         </TextField>
-                        <Button layoutX="125.0" layoutY="285.0" mnemonicParsing="false" onAction="#signIn" style="-fx-background-color: f2b5d4;" text="Sign In">
+                        <Button layoutX="187.0" layoutY="327.0" mnemonicParsing="false" onAction="#signIn" style="-fx-background-color: f2b5d4;" text="Sign In">
                             <font>
                                 <Font name="Segoe Print" size="13.0" />
                             </font>
@@ -54,12 +54,12 @@
                                 <DropShadow blurType="ONE_PASS_BOX" />
                             </effect>
                         </Button>
-                        <Hyperlink fx:id="linkToReturn" layoutX="214.0" layoutY="240.0" onAction="#changeToSignUp" text="I don't have an account yet">
+                        <Hyperlink fx:id="linkToReturn" layoutX="276.0" layoutY="282.0" onAction="#changeToSignUp" text="I don't have an account yet">
                             <font>
                                 <Font size="10.0" />
                             </font>
                         </Hyperlink>
-                        <Button layoutX="239.0" layoutY="285.0" mnemonicParsing="false" onAction="#returnHome" style="-fx-background-color: f2b5d4;" text="Cancel">
+                        <Button layoutX="301.0" layoutY="327.0" mnemonicParsing="false" onAction="#returnHome" style="-fx-background-color: f2b5d4;" text="Cancel">
                             <font>
                                 <Font name="Segoe Print" size="13.0" />
                             </font>

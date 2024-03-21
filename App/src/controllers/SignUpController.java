@@ -45,16 +45,21 @@ public class SignUpController implements Initializable {
 
     @FXML
     public void changeToSignIn(ActionEvent ae) {
-        loadScene("/views/SignIn.fxml");
+        loadScene("/views/SignIn.fxml", null);
     }
-    public void changeToMenuMode() {
-        loadScene("/views/MenuMode.fxml");
+    public void changeToMenuMode(User user) {
+        loadScene("/views/MenuMode.fxml", user);
     }
-    private void loadScene(String fxml)
+    private void loadScene(String fxml, User user)
     {
         Parent parent;
         try{
-            parent = FXMLLoader.load(getClass().getResource(fxml));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            parent = loader.load();
+            if(user!=null) {
+                MenuModeController controller = loader.getController();
+                controller.setUser(user);
+            }
             mainPane.setCenter(parent);
         }catch(IOException e)
         {
@@ -63,7 +68,7 @@ public class SignUpController implements Initializable {
     }
     @FXML
     public void returnHome(ActionEvent ae) {
-        loadScene("/views/Home.fxml");
+        loadScene("/views/Home.fxml", null);
     }
     @FXML
     public void signUp(ActionEvent ae) throws PasswordException, EmailException, UsernameException {
@@ -102,11 +107,11 @@ public class SignUpController implements Initializable {
         if(isEmail && isPass && isUN)
         {
             User user = new User( fieldEmail.getText(), fieldPassword.getText(), fieldUsername.getText());
-            if(userModel.getUserByUsernameEmail(user)==0)
+            if(userModel.getIdUserByUsernameEmail(user)==0)
             {
                 try {
-                    userModel.addUser(user);
-                    changeToMenuMode();
+                    user = userModel.addUser(user);
+                    changeToMenuMode(user);
                 }catch(UserNotAddedException ue) {
                     labelErrorDataBase.setText(ue.getMessage());
                 }

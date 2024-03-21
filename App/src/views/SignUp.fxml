@@ -1,93 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
+<BorderPane fx:id="mainPane" prefHeight="530.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <AnchorPane prefHeight="400.0" prefWidth="417.0" style="-fx-background-color: eff7f6;">
+                <AnchorPane layoutX="574.0" prefHeight="530.0" prefWidth="226.0" style="-fx-background-color: f2b5d4;">
                     <children>
-                        <Label layoutX="149.0" layoutY="37.0" text="Hello, friend!">
+                        <Label layoutX="19.0" layoutY="76.0" text="Glad to see you!">
                             <font>
-                                <Font name="Segoe Print" size="18.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="fieldUsername" layoutX="65.0" layoutY="90.0" prefHeight="26.0" prefWidth="303.0" promptText="Username">
-                            <font>
-                                <Font name="Segoe Print" size="12.0" />
-                            </font>
-                            <effect>
-                                <DropShadow />
-                            </effect>
-                        </TextField>
-                        <TextField fx:id="fieldEmail" layoutX="65.0" layoutY="156.0" prefHeight="26.0" prefWidth="303.0" promptText="Email">
-                            <font>
-                                <Font name="Segoe Print" size="12.0" />
-                            </font>
-                            <effect>
-                                <DropShadow />
-                            </effect>
-                        </TextField>
-                        <TextField fx:id="fieldPassword" layoutX="65.0" layoutY="220.0" prefHeight="26.0" prefWidth="303.0" promptText="Password">
-                            <font>
-                                <Font name="Segoe Print" size="12.0" />
-                            </font>
-                            <effect>
-                                <DropShadow />
-                            </effect>
-                        </TextField>
-                        <Button layoutX="121.0" layoutY="313.0" mnemonicParsing="false" onAction="#signUp" style="-fx-background-color: f2b5d4;" text="Sign Up">
-                            <font>
-                                <Font name="Segoe Print" size="13.0" />
-                            </font>
-                            <effect>
-                                <DropShadow />
-                            </effect>
-                        </Button>
-                        <Hyperlink fx:id="linkToReturn" layoutX="255.0" layoutY="275.0" onAction="#changeToSignIn" text="I already have an accont" textFill="#7bdff2">
-                            <font>
-                                <Font size="10.0" />
-                            </font>
-                        </Hyperlink>
-                        <Button layoutX="243.0" layoutY="313.0" mnemonicParsing="false" onAction="#returnHome" style="-fx-background-color: f2b5d4;" text="Cancel">
-                            <font>
-                                <Font name="Segoe Print" size="13.0" />
-                            </font>
-                            <effect>
-                                <DropShadow />
-                            </effect>
-                        </Button>
-                        <Label fx:id="labelErrorUsername" layoutX="69.0" layoutY="127.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4">
-                            <font>
-                                <Font name="Segoe Print Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="labelErrorEmail" layoutX="69.0" layoutY="189.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4">
-                            <font>
-                                <Font name="Segoe Print Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="labelErrorPassword" layoutX="69.0" layoutY="264.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4">
-                            <font>
-                                <Font name="Segoe Print Bold" size="12.0" />
-                            </font>
-                        </Label>
-                  <Label  fx:id="labelErrorDataBase" layoutX="354.0" layoutY="369.0">
-                     <font>
-                        <Font name="Segoe Print Bold" size="12.0" />
-                     </font>
-                  </Label>
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="418.0" prefHeight="400.0" prefWidth="221.0" style="-fx-background-color: f2b5d4;">
-                    <children>
-                        <Label layoutX="37.0" layoutY="84.0" text="Glad to see you!">
-                            <font>
-                                <Font name="Segoe Print" size="18.0" />
+                                <Font name="Segoe Print" size="24.0" />
                             </font>
                         </Label>
                     </children>
@@ -95,4 +26,80 @@
             </children>
         </AnchorPane>
     </children>
+   <left>
+          <AnchorPane prefHeight="530.0" prefWidth="575.0" style="-fx-background-color: eff7f6;" BorderPane.alignment="CENTER">
+              <children>
+                  <Label layoutX="209.0" layoutY="83.0" text="Hello, friend!">
+                      <font>
+                          <Font name="Segoe Print" size="24.0" />
+                      </font>
+                  </Label>
+                  <TextField fx:id="fieldUsername" layoutX="136.0" layoutY="163.0" prefHeight="26.0" prefWidth="303.0" promptText="Username">
+                      <font>
+                          <Font name="Segoe Print" size="12.0" />
+                      </font>
+                      <effect>
+                          <DropShadow />
+                      </effect>
+                  </TextField>
+                  <TextField fx:id="fieldEmail" layoutX="136.0" layoutY="229.0" prefHeight="26.0" prefWidth="303.0" promptText="Email">
+                      <font>
+                          <Font name="Segoe Print" size="12.0" />
+                      </font>
+                      <effect>
+                          <DropShadow />
+                      </effect>
+                  </TextField>
+                  <TextField fx:id="fieldPassword" layoutX="136.0" layoutY="293.0" prefHeight="26.0" prefWidth="303.0" promptText="Password">
+                      <font>
+                          <Font name="Segoe Print" size="12.0" />
+                      </font>
+                      <effect>
+                          <DropShadow />
+                      </effect>
+                  </TextField>
+                  <Button layoutX="192.0" layoutY="386.0" mnemonicParsing="false" onAction="#signUp" style="-fx-background-color: f2b5d4;" text="Sign Up">
+                      <font>
+                          <Font name="Segoe Print" size="13.0" />
+                      </font>
+                      <effect>
+                          <DropShadow />
+                      </effect>
+                  </Button>
+                  <Hyperlink fx:id="linkToReturn" layoutX="326.0" layoutY="348.0" onAction="#changeToSignIn" text="I already have an accont" textFill="#7bdff2">
+                      <font>
+                          <Font size="10.0" />
+                      </font>
+                  </Hyperlink>
+                  <Button layoutX="314.0" layoutY="386.0" mnemonicParsing="false" onAction="#returnHome" style="-fx-background-color: f2b5d4;" text="Cancel">
+                      <font>
+                          <Font name="Segoe Print" size="13.0" />
+                      </font>
+                      <effect>
+                          <DropShadow />
+                      </effect>
+                  </Button>
+                  <Label fx:id="labelErrorUsername" layoutX="136.0" layoutY="200.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4">
+                      <font>
+                          <Font name="Segoe Print Bold" size="12.0" />
+                      </font>
+                  </Label>
+                  <Label fx:id="labelErrorEmail" layoutX="136.0" layoutY="264.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4">
+                      <font>
+                          <Font name="Segoe Print Bold" size="12.0" />
+                      </font>
+                  </Label>
+                  <Label fx:id="labelErrorPassword" layoutX="136.0" layoutY="337.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4">
+                      <font>
+                          <Font name="Segoe Print Bold" size="12.0" />
+                      </font>
+                  </Label>
+            <Label fx:id="labelErrorDataBase" layoutX="354.0" layoutY="369.0">
+               <font>
+                  <Font name="Segoe Print Bold" size="12.0" />
+               </font>
+            </Label>
+              </children>
+          </AnchorPane>
+   </left>
 </BorderPane>

@@ -34,15 +34,21 @@ public class SignInController implements Initializable {
     private BorderPane mainPane;
     @FXML
     public void changeToSignUp(ActionEvent actionEvent) {
-        loadScene("/views/SignUp.fxml");
+        loadScene("/views/SignUp.fxml", null);
     }
 
-    private void loadScene(String fxml)
+    private void loadScene(String fxml, User user)
     {
         Parent parent;
         try{
-            parent = FXMLLoader.load(getClass().getResource(fxml));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            parent = loader.load();
+            if(user!=null) {
+                MenuModeController controller = loader.getController();
+                controller.setUser(user);
+            }
             mainPane.setCenter(parent);
+
         }catch(IOException e)
         {
             e.printStackTrace();
@@ -51,22 +57,20 @@ public class SignInController implements Initializable {
 
     @FXML
     public void returnHome(ActionEvent actionEvent) {
-        loadScene("/views/Home.fxml");
+        loadScene("/views/Home.fxml", null);
     }
-    public void changeToMenuMode() {
-        loadScene("/views/MenuMode.fxml");
+    public void changeToMenuMode(User user) {
+        loadScene("/views/MenuMode.fxml", user);
     }
     public void signIn(ActionEvent actionEvent) {
         userModel = new UserModel();
         User user=userModel.findUser(new User(fieldEmail.getText(), fieldPassword.getText(), ""));
         if(user != null)
         {
-            changeToMenuMode();
+            changeToMenuMode(user);
         }
-
-
-
-
-
+        else {
+            labelErrorMessage.setText("Incorrect email or password");
+        }
     }
 }
