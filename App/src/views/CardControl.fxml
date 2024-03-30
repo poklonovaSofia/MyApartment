@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane  fx:id="tool" onMouseClicked="#doubleClicked" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: eff7f6; -fx-border-color: f2b5d4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.CardControl">
+   <children>
+      <ImageView fx:id="image" fitHeight="57.0" fitWidth="55.0" layoutX="32.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+
+      <Label fx:id="title" layoutX="33.0" layoutY="55.0" text="Label" textFill="#f2b5d4">
+         <font>
+            <Font name="Segoe Print" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="description" layoutX="15.0" layoutY="75.0" text="Label" textFill="#f2b5d4"  maxWidth="80" wrapText="true">
+         <font>
+            <Font name="Segoe Print" size="8.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

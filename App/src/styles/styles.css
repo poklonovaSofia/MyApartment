@@ -2,7 +2,6 @@
     -fx-background-color: #eff7f6;
 
 }
-
 #roomsTypesList .list-cell:even {
     -fx-background-color: #cef5ef;
 }
@@ -12,4 +11,18 @@
 
 #usersRoomsList .list-cell:even {
     -fx-background-color: #eff7f6;
+}
+.tab-pane .tab-header-area .tab .tab-label {
+    -fx-font-family: 'Segoe Print';
+    -fx-font-size: 12px;
+}
+.tab-pane .tab-header-area .tab
+{
+    -fx-background-color:  #eff7f6;
+    -fx-border-color: #f7d6e0;
+    -fx-border-width: 1;
+}
+#mainPane
+{
+
 }

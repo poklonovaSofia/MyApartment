@@ -1,11 +1,13 @@
 package entities;
 
+import java.util.List;
+
 public class Room {
     private int id;
     private int idType;
     private String title;
     private int apartmentId;
-    //private List<Furniture> furnitureList;
+    private List<Furniture> furnitureList;
 
     public int getId() {
         return id;
@@ -39,13 +41,13 @@ public class Room {
         this.apartmentId = apartmentId;
     }
 
-   /* public List<Furniture> getFurnitureList() {
+    public List<Furniture> getFurnitureList() {
         return furnitureList;
     }
 
     public void setFurnitureList(List<Furniture> furnitureList) {
         this.furnitureList = furnitureList;
-    }*/
+    }
    @Override
    public String toString() {
        return title;

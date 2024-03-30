@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoomTypeModel {
+    Connection connection;
     public  List<RoomType> getAllTypes() {
         List<RoomType> roomTypes = new ArrayList<>();
-        Connection connection = DbConnection.getDatabaseConnection().getConnection();
+        connection = DbConnection.getDatabaseConnection().getConnection();
         String sql = "SELECT id, typeOfRoom FROM typesOfRooms";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             ResultSet rs = pstmt.executeQuery();

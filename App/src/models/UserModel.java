@@ -23,12 +23,11 @@ public class UserModel {
             ResultSet generatedKeys = pstmt.getGeneratedKeys();
             if (generatedKeys.next()) {
                 user.setId(generatedKeys.getInt(1));
-
-            } else {
-                throw new SQLException("Failed to retrieve user ID after insertion");
+                return user;
             }
         } catch (SQLException e) {
 
+            System.out.println(e.getMessage());
             throw new UserNotAddedException("Failed to create user");
         }
         return null;

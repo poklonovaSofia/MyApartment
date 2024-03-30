@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="470.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.TabControl">
+
+        <children>
+
+
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="422.0" prefWidth="594.0">
+                <children>
+                    <Accordion layoutY="7.0" prefHeight="345.0" prefWidth="171.0" style="-fx-background-color: b2f7ef;">
+                        <panes>
+                            <TitledPane animated="false" style="-fx-background-color: b2f7ef;" text="Furniture">
+                                <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: b2f7ef;">
+                           <children>
+                              <TreeView fx:id="treeFurniture" onMouseClicked="#onTreeItemClicked" prefHeight="215.0" prefWidth="171.0" style="-fx-background-color: b2f7ef;" />
+                           </children></AnchorPane>
+                                </content>
+                                <font>
+                                    <Font name="Segoe Print" size="12.0" />
+                                </font>
+                            </TitledPane>
+                            <TitledPane animated="false" prefWidth="320.0" text="Added furniture">
+                                <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: b2f7ef;">
+                           <children>
+                              <ListView fx:id="listAddedFurniture" onMouseClicked="#deleteFurniture" prefHeight="229.0" prefWidth="171.0" />
+                           </children></AnchorPane>
+                                </content>
+                                <font>
+                                    <Font name="Segoe Print" size="12.0" />
+                                </font>
+                            </TitledPane>
+                        </panes>
+                    </Accordion>
+                    <AnchorPane fx:id="paneForFurniture" layoutX="172.0" layoutY="7.0" prefHeight="426.0" prefWidth="434.0" style="-fx-background-color: f7d6e0;" />
+                </children>
+            </AnchorPane>
+
+
+        </children>
+
+
+</AnchorPane>

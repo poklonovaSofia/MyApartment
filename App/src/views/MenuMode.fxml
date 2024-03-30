@@ -68,7 +68,7 @@
                         </DropShadow>
                     </effect>
                     <children>
-                        <AnchorPane layoutX="8.8" layoutY="8.8" prefHeight="118.0" prefWidth="138.0" style="-fx-background-color: #daf4f1;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0">
+                        <AnchorPane onMouseClicked="#clickedOnMyWorksPane" layoutX="8.8" layoutY="8.8" prefHeight="118.0" prefWidth="138.0" style="-fx-background-color: #daf4f1;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0">
                             <effect>
                                 <DropShadow spread="0.36">
                                     <color>

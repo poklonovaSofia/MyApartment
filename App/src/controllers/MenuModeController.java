@@ -24,11 +24,20 @@ public class MenuModeController {
     {
         Parent parent;
         try{
-            parent = FXMLLoader.load(getClass().getResource(fxml));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            parent = loader.load();
+            if(user!=null) {
+                CreateSettingsModeController controller = loader.getController();
+                controller.setUser(user);
+            }
             mainPane.setCenter(parent);
         }catch(IOException e)
         {
             e.printStackTrace();
         }
+    }
+
+    public void clickedOnMyWorksPane(MouseEvent mouseEvent) {
+        loadScene("/views/MyWorksMode.fxml");
     }
 }

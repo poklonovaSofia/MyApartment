@@ -11,6 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="mainPane" prefHeight="530.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
+
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
@@ -23,10 +24,6 @@
                         </Label>
                     </children>
                 </AnchorPane>
-            </children>
-        </AnchorPane>
-    </children>
-   <left>
           <AnchorPane prefHeight="530.0" prefWidth="575.0" style="-fx-background-color: eff7f6;" BorderPane.alignment="CENTER">
               <children>
                   <Label layoutX="209.0" layoutY="83.0" text="Hello, friend!">
@@ -101,5 +98,7 @@
             </Label>
               </children>
           </AnchorPane>
-   </left>
+            </children>
+        </AnchorPane>
+   </children>
 </BorderPane>
