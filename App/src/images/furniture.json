@@ -1,0 +1,224 @@
+[
+  {
+    "title": "Armchair",
+    "description": "Elegant armchair for your living room",
+    "image": "/images/chairs/chair2.png",
+    "width": 100.0,
+    "height": 90.0,
+    "color": "Beige",
+    "material": "Fabric",
+    "idFurnitureType": 1
+  },
+  {
+    "title": "Coffee Table",
+    "description": "Stylish coffee table for your living room",
+    "image": "/images/tables/table2.png",
+    "width": 120.0,
+    "height": 60.0,
+    "color": "Brown",
+    "material": "Wood",
+    "idFurnitureType": 2
+  },
+  {
+    "title": "Wardrobe",
+    "description": "Spacious wardrobe for your bedroom",
+    "image": "/images/wardrobes/wardrobe1.png",
+    "width": 180.0,
+    "height": 200.0,
+    "color": "White",
+    "material": "Wood",
+    "idFurnitureType": 3
+  },
+  {
+    "title": "Dresser",
+    "description": "Functional dresser for your bedroom",
+    "image": "/images/dressers/dresser1.png",
+    "width": 100.0,
+    "height": 120.0,
+    "color": "Gray",
+    "material": "Wood",
+    "idFurnitureType": 4
+  },
+  {
+    "title": "Sink",
+    "description": "Modern sink for your bathroom",
+    "image": "/images/sinks/sink1.png",
+    "width": 80.0,
+    "height": 60.0,
+    "color": "White",
+    "material": "Porcelain",
+    "idFurnitureType": 5
+  },
+  {
+    "title": "Toilet",
+    "description": "Sleek toilet for your bathroom",
+    "image": "/images/toilets/toilet.png",
+    "width": 50.0,
+    "height": 60.0,
+    "color": "White",
+    "material": "Ceramic",
+    "idFurnitureType": 6
+  },
+  {
+    "title": "Bookshelf",
+    "description": "Practical bookshelf for your study",
+    "image": "/images/shelfes/shelf.png",
+    "width": 120.0,
+    "height": 180.0,
+    "color": "Brown",
+    "material": "Wood",
+    "idFurnitureType": 7
+  },
+  {
+    "title": "Desk Lamp",
+    "description": "Adjustable desk lamp for your office",
+    "image": "/images/lamps/lamp.png",
+    "width": 30.0,
+    "height": 30.0,
+    "color": "Silver",
+    "material": "Metal",
+    "idFurnitureType": 8
+  },
+  {
+    "title": "Side Table",
+    "description": "Compact side table for your living room",
+    "image": "/images/tables/table4.png",
+    "width": 60.0,
+    "height": 60.0,
+    "color": "Black",
+    "material": "Glass",
+    "idFurnitureType": 2
+  },
+  {
+    "title": "Mirror",
+    "description": "Decorative mirror for your hallway",
+    "image": "/images/mirrors/mirror1.png",
+    "width": 80.0,
+    "height": 120.0,
+    "color": "Gold",
+    "material": "Glass",
+    "idFurnitureType": 0
+  },
+  {
+    "title": "TV Stand",
+    "description": "Sleek TV stand for your living room",
+    "image": "/images/stands/stand1.png",
+    "width": 150.0,
+    "height": 60.0,
+    "color": "Black",
+    "material": "Wood",
+    "idFurnitureType": 10
+  },
+  {
+    "title": "Bar Stool",
+    "description": "Modern bar stool for your kitchen",
+    "image": "/images/stools/stool1.png",
+    "width": 40.0,
+    "height": 40.0,
+    "color": "Red",
+    "material": "Metal",
+    "idFurnitureType": 11
+  },
+  {
+    "title": "Ottoman",
+    "description": "Comfortable ottoman for your living room",
+    "image": "/images/chairs/chair7.png",
+    "width": 80.0,
+    "height": 80.0,
+    "color": "Blue",
+    "material": "Fabric",
+    "idFurnitureType": 11
+  },
+  {
+    "title": "Dinning Table",
+    "description": "Comfortable table for your living room",
+    "image": "/images/tables/table3.png",
+    "width": 150.0,
+    "height": 100.0,
+    "color": "White",
+    "material": "Wood",
+    "idFurnitureType": 2
+  },
+  {
+    "title": "Nightstand",
+    "description": "Beautiful stand for your bedroom room",
+    "image": "/images/stands/stand.png",
+    "width": 65.0,
+    "height": 80.0,
+    "color": "White",
+    "material": "Wood",
+    "idFurnitureType": 10
+  },
+  {
+    "title": "Sofa",
+    "description": "Soft sofa for your living room",
+    "image": "/images/couches/sofa.png",
+    "width": 100.0,
+    "height": 80.0,
+    "color": "Purple",
+    "material": "Fabric",
+    "idFurnitureType": 13
+  },
+  {
+    "title": "Console Table",
+    "description": "Convenient table for your study or office room",
+    "image": "/images/tables/table1.png",
+    "width": 100.0,
+    "height": 130.0,
+    "color": "Grey",
+    "material": "Wood",
+    "idFurnitureType": 2
+  },
+   {
+    "title": "Accent chair",
+    "description": "Modern chair for your living room",
+    "image": "/images/chairs/chair3.png",
+    "width": 80.0,
+    "height": 80.0,
+    "color": "Blue",
+    "material": "Fabric",
+    "idFurnitureType": 1
+  },
+  {
+    "title": "Credenza",
+    "description": "Roomy wardrobe for your bedroom",
+    "image": "/images/wardrobes/wardrobe.png",
+    "width": 110.0,
+    "height": 130.0,
+    "color": "White",
+    "material": "Wood",
+    "idFurnitureType": 3
+  },
+  {
+    "title": "Coat Rack",
+    "description": "Beautiful dresser for your bedroom",
+    "image": "/images/dressers/dresser.png",
+    "width": 20.0,
+    "height": 170.0,
+    "color": "Gold",
+    "material": "Metal",
+    "idFurnitureType": 4
+  },
+  {
+    "title": "Bunk bed",
+    "description": "Comfortable bed for your bedroom",
+    "image": "/images/beds/bed_double.png",
+    "width": 120.0,
+    "height": 200.0,
+    "color": "Blue",
+    "material": "Comfortable",
+    "idFurnitureType": 14
+  },
+  {
+    "title": "Murphy bed",
+    "description": "Soft bed for your living room",
+    "image": "/images/beds/bed.png",
+    "width": 250.0,
+    "height": 220.0,
+    "color": "Grey",
+    "material": "Wood",
+    "idFurnitureType": 14
+  }
+
+]
+   
