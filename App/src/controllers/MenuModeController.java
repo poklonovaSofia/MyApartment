@@ -47,4 +47,8 @@ public class MenuModeController {
     public void clickedOnVotePane(MouseEvent mouseEvent) {
         loadScene("/views/VoteMode.fxml");
     }
+
+    public void clickedOnStatisticsPane(MouseEvent mouseEvent) {
+        loadScene("/views/StatisticsMode.fxml");
+    }
 }
