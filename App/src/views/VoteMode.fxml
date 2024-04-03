@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Font?>
-<BorderPane fx:id="mainPane" style="-fx-background-color: f2b5d4;" xmlns="http://javafx.com/javafx"
+<BorderPane style="-fx-background-color: f2b5d4;" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.MyWorksModeController"
-            prefHeight="530.0" prefWidth="800.0">
+            fx:controller="controllers.VoteModeController"
+            prefHeight="400.0" prefWidth="600.0">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="486.0" prefWidth="784.0" VBox.vgrow="ALWAYS">
             <children>
-                <Label layoutX="26.0" layoutY="28.0" text="My Works">
+                <Label layoutX="26.0" layoutY="28.0" text="Vote">
                     <font>
                         <Font name="Segoe Print" size="18.0" />
                     </font>
@@ -29,5 +29,6 @@
             </children>
         </AnchorPane>
     </children>
+
 
 </BorderPane>

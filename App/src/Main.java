@@ -41,19 +41,21 @@ public class Main extends Application {
         CreateDb createDb = new CreateDb();
         createDb.createTableUsers();
         //createDb.deleteTableRooms();
-        //createDb.deleteTableApartments();
+        createDb.deleteTableApartments();
         createDb.createTableApartments();
         createDb.createTableTypesOfRooms();
         createDb.createTableRooms();
-        //createDb.deleteTableFurnitures();
+        createDb.deleteTableFurnitures();
         createDb.createTableFurnitures();
         //createDb.deleteTableTypesOfFurniture();
         createDb.createTableTypesOfFurniture();
-        createDb.deleteTableAddedFurniture();
+        //createDb.deleteTableAddedFurniture();
+        //createDb.deleteTableAddedFurniture();
         createDb.createTableAddedFurnitureInRoom();
+        createDb.createTableUsersVotes();
 
 
-        /*List<Furniture> furnitureList = null;
+        List<Furniture> furnitureList = null;
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             furnitureList = objectMapper.readValue(new File("src/images/furniture.json"), new TypeReference<List<Furniture>>() {});
@@ -63,7 +65,7 @@ public class Main extends Application {
         }
 
         FillDb fillDb = new FillDb();
-        fillDb.insertFurnitures(furnitureList);*/
+        fillDb.insertFurnitures(furnitureList);
     }
     private void launchApplication(String[] args) {
         launch(args);

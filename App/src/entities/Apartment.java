@@ -11,6 +11,7 @@ public class Apartment {
     private ArrayList<Room> rooms;
     private String createdAt;
     private String updatedAt;
+    private Boolean isPublic;
     private int userId;
     public Apartment()
     {
@@ -70,6 +71,13 @@ public class Apartment {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public void setIsPublic(boolean selected) {
+        isPublic = selected;
+    }
+    public Boolean getIsPublic() {
+        return isPublic;
     }
 
 }

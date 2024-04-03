@@ -34,8 +34,10 @@ public class CreateDb {
                 + "title TEXT NOT NULL,"
                 + "description TEXT NOT NULL,"
                 + "idUser INTEGER NOT NULL,"
+                + "isPublic BOOL NOT NULL,"
                 + "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
-                + "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
+                + "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+                + "numberOfVotes INTEGER NOT NULL)";
 
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(queryCreateTable);
@@ -181,6 +183,34 @@ public class CreateDb {
             statement.executeUpdate(queryDeleteTable);
         } catch (SQLException se) {
             System.out.println(se.getMessage());
+        }
+    }
+    public void createTableAssessmentOfApartments() throws SQLException {
+        String queryCreateTable = "CREATE TABLE IF NOT EXISTS assessmentOfApartments ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "idApartment INTEGER NOT NULL,"
+                + "assessment INTEGER NOT NULL)";
+
+        try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate(queryCreateTable);
+
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+
+        }
+    }
+    public void createTableUsersVotes() throws SQLException {
+        String queryCreateTable = "CREATE TABLE IF NOT EXISTS usersVote ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "idUser INTEGER NOT NULL,"
+                + "idApartment INTEGER NOT NULL)";
+
+        try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate(queryCreateTable);
+
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+
         }
     }
 }

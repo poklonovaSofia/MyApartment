@@ -2,11 +2,14 @@ package models;
 
 import database.DbConnection;
 import entities.Apartment;
+import entities.FurnitureType;
 import utils.ApartmentNotAddedException;
 import utils.UserNotAddedException;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ApartmentModel {
     Connection connection;
@@ -27,7 +30,7 @@ public class ApartmentModel {
 
     public Apartment addApartment(Apartment apartment) throws ApartmentNotAddedException {
         connection= DbConnection.getDatabaseConnection().getConnection();
-        String sql = "INSERT INTO apartments(title, description, idUser, created_at, updated_at) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO apartments(title, description, idUser, created_at, updated_at, isPublic, numberOfVotes) VALUES(?,?,?,?,?,?,?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, apartment.getTitle());
@@ -37,6 +40,8 @@ public class ApartmentModel {
             apartment.setEditedAt(apartment.getCreatedAt());
             pstmt.setString(4, apartment.getCreatedAt());
             pstmt.setString(5, apartment.getCreatedAt());
+            pstmt.setBoolean(6, apartment.getIsPublic());
+            pstmt.setInt(7, 0);
             pstmt.executeUpdate();
             ResultSet generatedKeys = pstmt.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -62,5 +67,65 @@ public class ApartmentModel {
             e.printStackTrace();
         }
 
+    }
+
+    public List<Apartment> getAllApartByIdUser(int idUser) {
+        List<Apartment> apartmentList = new ArrayList<>();
+        connection = DbConnection.getDatabaseConnection().getConnection();
+        String sql = "SELECT id, title, description, isPublic, created_at, updated_at FROM apartments WHERE idUser = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, idUser);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Apartment apartment = new Apartment();
+                apartment.setId( rs.getInt("id"));
+                apartment.setTitle( rs.getString("title"));
+                apartment.setDescription( rs.getString("description"));
+                apartment.setCreatedAt( rs.getString("created_at"));
+                apartment.setEditedAt(rs.getString("updated_at"));
+                apartment.setUserId(idUser);
+                apartment.setIsPublic(rs.getBoolean("isPublic"));
+                apartmentList.add(apartment);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return apartmentList;
+    }
+
+    public void changeStateOfPrivacy(int id, Boolean isPublic) {
+        connection= DbConnection.getDatabaseConnection().getConnection();
+        String sql = "UPDATE apartments SET isPublic = ? WHERE id = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setBoolean(1, isPublic);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Apartment> getAllApartWithoutUser(int idUser) {
+        List<Apartment> apartmentList = new ArrayList<>();
+        connection = DbConnection.getDatabaseConnection().getConnection();
+        String sql = "SELECT id, title, description, isPublic, created_at, updated_at FROM apartments WHERE idUser != ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, idUser);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Apartment apartment = new Apartment();
+                apartment.setId( rs.getInt("id"));
+                apartment.setTitle( rs.getString("title"));
+                apartment.setDescription( rs.getString("description"));
+                apartment.setCreatedAt( rs.getString("created_at"));
+                apartment.setEditedAt(rs.getString("updated_at"));
+                apartment.setUserId(idUser);
+                apartment.setIsPublic(rs.getBoolean("isPublic"));
+                apartmentList.add(apartment);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return apartmentList;
     }
 }

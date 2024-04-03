@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
@@ -13,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.BorderPane?>
-<BorderPane fx:id="mainPane"  prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: f2b5d4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateSettingsModeController" stylesheets="@../styles/styles.css">
+<BorderPane fx:id="mainPane" prefHeight="530.0" prefWidth="800.0"  stylesheets="@../styles/styles.css" style="-fx-background-color: f2b5d4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateSettingsModeController">
     <children>
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: f2b5d4; -fx-border-color: f7d6e0; -fx-border-width: 10;" VBox.vgrow="ALWAYS">
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: f2b5d4; -fx-border-color: f7d6e0; -fx-border-width: 10;"  VBox.vgrow="ALWAYS">
             <children>
                 <Label layoutX="27.0" layoutY="20.0" text="Create new apartment">
                     <font>
@@ -55,7 +56,7 @@
                         <Font name="Segoe Print" size="14.0" />
                     </font>
                 </Label>
-                <Button onAction="#createApartment" layoutX="545.0" layoutY="464.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="86.0" style="-fx-background-color: eff7f6;" text="Create">
+                <Button layoutX="545.0" layoutY="464.0" mnemonicParsing="false" onAction="#createApartment" prefHeight="41.0" prefWidth="86.0" style="-fx-background-color: eff7f6;" text="Create">
                     <font>
                         <Font name="Segoe Print" size="16.0" />
                     </font>
@@ -107,6 +108,12 @@
                   <Font name="Segoe Print" size="11.0" />
                </font>
             </Label>
+            <Label layoutX="276.0" layoutY="75.0" text="Public">
+               <font>
+                  <Font name="Segoe Print" size="14.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="ispublic" layoutX="331.0" layoutY="79.0" mnemonicParsing="false" />
             </children>
         </AnchorPane>
     </children>

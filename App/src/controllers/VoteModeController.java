@@ -1,14 +1,12 @@
 package controllers;
 
-import components.CardControl;
 import components.PostControl;
+import components.PostControlVote;
 import entities.Apartment;
-import entities.Furniture;
 import entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
@@ -19,14 +17,36 @@ import utils.ModeControllerInterface;
 import java.io.IOException;
 import java.util.List;
 
-public class MyWorksModeController implements ModeControllerInterface {
+public class VoteModeController implements ModeControllerInterface {
     private User user;
     private ApartmentModel apartmentModel;
-    public void setUser(User user){this.user=user;}
     @FXML
     private BorderPane mainPane;
     @FXML
     private ListView<AnchorPane> listViewApartments;
+    public void fill() {
+        apartmentModel=new ApartmentModel();
+        List<Apartment> apartmentList =apartmentModel.getAllApartWithoutUser(user.getId());
+        for(Apartment ap: apartmentList)
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/PostControlVote.fxml"));
+            try {
+
+                AnchorPane content = loader.load();
+                PostControlVote controller = loader.getController();
+                controller.set(ap);
+                listViewApartments.getItems().add(content);
+
+            }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void setUser(User user) {
+        this.user=user;
+    }
+
     public void returnBack(ActionEvent actionEvent) {
         loadScene("/views/MenuMode.fxml", user);
     }
@@ -45,25 +65,6 @@ public class MyWorksModeController implements ModeControllerInterface {
         }catch(IOException e)
         {
             e.printStackTrace();
-        }
-    }
-
-    public void fill() {
-        apartmentModel=new ApartmentModel();
-        List<Apartment> apartmentList =apartmentModel.getAllApartByIdUser(user.getId());
-        for(Apartment ap: apartmentList)
-        {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/PostControl.fxml"));
-            try {
-
-                AnchorPane content = loader.load();
-                PostControl controller = loader.getController();
-                controller.set(ap);
-                listViewApartments.getItems().add(content);
-
-            }catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 }

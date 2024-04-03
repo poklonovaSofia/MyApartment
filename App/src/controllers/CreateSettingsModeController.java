@@ -10,10 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -21,15 +18,18 @@ import models.ApartmentModel;
 import models.RoomModel;
 import models.RoomTypeModel;
 import utils.ApartmentNotAddedException;
+import utils.ModeControllerInterface;
 import utils.RoomNotAddedException;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class CreateSettingsModeController extends MenuModeController{
+public class CreateSettingsModeController extends MenuModeController implements ModeControllerInterface {
     private ApartmentModel apartmentModel;
     private RoomModel roomModel;
     private RoomTypeModel roomTypeModel;
+    @FXML
+    private CheckBox ispublic;
     @FXML
     private BorderPane mainPane;
     @FXML
@@ -49,8 +49,8 @@ public class CreateSettingsModeController extends MenuModeController{
     private TextArea descriptionField;
     private User user;
     public void setUser(User user){this.user = user;}
-    @FXML
-    private void initialize() {
+
+    public void fill() {
         roomTypeModel = new RoomTypeModel();
         ObservableList<RoomType> observableRoomTypes = FXCollections.observableArrayList(roomTypeModel.getAllTypes());
         roomsTypesList.setItems(observableRoomTypes);
@@ -200,6 +200,7 @@ public class CreateSettingsModeController extends MenuModeController{
                 apartment.setTitle(nameOfApartmentField.getText());
                 apartment.setUserId(user.getId());
                 apartment.setDescription(descriptionField.getText());
+                apartment.setIsPublic(ispublic.isSelected());
                 apartment= apartmentModel.addApartment(apartment);
                 roomModel = new RoomModel();
                 for(Room room: usersRoomsList.getItems())
@@ -219,4 +220,6 @@ public class CreateSettingsModeController extends MenuModeController{
     private void goToEditApartmentMode(Apartment apartment) {
         loadScene("/views/EditApartmentMode.fxml", apartment);
     }
+
+
 }

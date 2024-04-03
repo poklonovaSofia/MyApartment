@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="components.PostControlVote"
+            prefHeight="80.0" prefWidth="720.0">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="82.0" prefWidth="730.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Hyperlink fx:id="title" layoutX="14.0" layoutY="4.0" text="">
+                    <font>
+                        <Font name="Segoe Print" size="14.0" />
+                    </font>
+                </Hyperlink>
+                <Label fx:id="description" layoutX="14.0" layoutY="36.0" text="">
+                    <font>
+                        <Font name="Segoe Print" size="12.0" />
+                    </font>
+                </Label>
+                <Label layoutX="633.0" layoutY="14.0" text="Vote">
+                    <font>
+                        <Font name="Segoe Print" size="14.0" />
+                    </font>
+                </Label>
+                <Separator layoutX="607.0" layoutY="3.0" orientation="VERTICAL" prefHeight="74.0" prefWidth="8.0" />
+                <CheckBox fx:id="isVote" onAction="#changeState" layoutX="683.0" layoutY="18.0" mnemonicParsing="false" />
+            </children>
+        </AnchorPane>
+    </children>
+
+</AnchorPane>

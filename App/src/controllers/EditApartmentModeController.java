@@ -45,8 +45,6 @@ public class EditApartmentModeController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/TabControl.fxml"));
             Node content = loader.load();
 
-
-
             TabControl controller = loader.getController();
             controller.setRoom(room);
             content.setUserData(controller);
