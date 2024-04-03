@@ -6,9 +6,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.text.Font?>
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.StatisticsModeController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="530.0" prefWidth="800.0">
+    <children>
+        <AnchorPane fx:id="anchorPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <children>
+                <AnchorPane layoutY="-2.0" prefHeight="536.0" prefWidth="800.0" style="-fx-background-color: f2b5d4;">
+                    <children>
+                        <Button layoutX="690.0" layoutY="472.0" mnemonicParsing="false" style="-fx-background-color: eff7f6;" text="Cancel">
+                            <font>
+                                <Font name="Segoe Print" size="14.0" />
+                            </font>
+                        </Button>
+                        <Label layoutX="47.0" layoutY="31.0" text="Apartment leaders">
+                            <font>
+                                <Font name="Segoe Print" size="18.0" />
+                            </font>
+                        </Label>
+                        <ListView fx:id="listLeaders" layoutX="47.0" layoutY="74.0" prefHeight="379.0" prefWidth="709.0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
 
-</AnchorPane>
+</BorderPane>

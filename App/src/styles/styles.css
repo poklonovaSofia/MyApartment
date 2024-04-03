@@ -26,3 +26,10 @@
 {
 
 }
+.progress-bar > .track {
+    -fx-background-color: #f7d6e0;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: #f2b5d4;
+}

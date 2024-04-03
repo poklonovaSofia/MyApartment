@@ -3,6 +3,7 @@ package models;
 import database.DbConnection;
 import entities.Apartment;
 import entities.FurnitureType;
+import entities.StatiscticOfApartment;
 import utils.ApartmentNotAddedException;
 import utils.UserNotAddedException;
 
@@ -109,9 +110,10 @@ public class ApartmentModel {
     public List<Apartment> getAllApartWithoutUser(int idUser) {
         List<Apartment> apartmentList = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();
-        String sql = "SELECT id, title, description, isPublic, created_at, updated_at, numberOfVotes FROM apartments WHERE idUser != ?";
+        String sql = "SELECT id, title, description, isPublic, created_at, updated_at, numberOfVotes FROM apartments WHERE idUser != ? AND isPublic = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, idUser);
+            pstmt.setInt(2, 1);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 Apartment apartment = new Apartment();
@@ -141,5 +143,27 @@ public class ApartmentModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<StatiscticOfApartment> getAllPublicAp() {
+        List<StatiscticOfApartment> statiscticOfApartments = new ArrayList<>();
+        connection = DbConnection.getDatabaseConnection().getConnection();
+        String sql = "SELECT id, title, idUser, numberOfVotes FROM apartments WHERE isPublic = ? ORDER BY numberOfVotes DESC LIMIT ?;";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, 1);
+            pstmt.setInt(2, 20);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                StatiscticOfApartment statiscticOfApartment = new StatiscticOfApartment();
+                statiscticOfApartment.setIdApartment( rs.getInt("id"));
+                statiscticOfApartment.setNameOfApartment( rs.getString("title"));
+                statiscticOfApartment.setIdUser( rs.getInt("idUser"));
+                statiscticOfApartment.setNumberOfVotes( rs.getInt("numberOfVotes"));
+                statiscticOfApartments.add(statiscticOfApartment);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return statiscticOfApartments;
     }
 }
