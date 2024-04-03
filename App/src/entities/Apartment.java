@@ -13,6 +13,7 @@ public class Apartment {
     private String updatedAt;
     private Boolean isPublic;
     private int userId;
+    private int numberOfVotes;
     public Apartment()
     {
         rooms= new ArrayList<Room>();
@@ -24,6 +25,13 @@ public class Apartment {
 
     public void setId(int id) {
         this.id = id;
+    }
+    public int getNumberOfVotes() {
+        return numberOfVotes;
+    }
+
+    public void setNumberOfVotes(int numberOfVotes) {
+        this.numberOfVotes = numberOfVotes;
     }
 
     public String getTitle() {

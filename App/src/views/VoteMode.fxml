@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Font?>
-<BorderPane style="-fx-background-color: f2b5d4;" xmlns="http://javafx.com/javafx"
+<BorderPane fx:id="mainPane" style="-fx-background-color: f2b5d4;" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.VoteModeController"
             prefHeight="400.0" prefWidth="600.0">

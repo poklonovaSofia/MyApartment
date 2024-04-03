@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="components.PostControlVote"
-            prefHeight="80.0" prefWidth="720.0">
+
+<AnchorPane prefHeight="80.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.PostControlVote">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="82.0" prefWidth="730.0" VBox.vgrow="ALWAYS">
             <children>
@@ -31,7 +28,17 @@
                     </font>
                 </Label>
                 <Separator layoutX="607.0" layoutY="3.0" orientation="VERTICAL" prefHeight="74.0" prefWidth="8.0" />
-                <CheckBox fx:id="isVote" onAction="#changeState" layoutX="683.0" layoutY="18.0" mnemonicParsing="false" />
+                <CheckBox fx:id="isVote" layoutX="683.0" layoutY="18.0" mnemonicParsing="false" onAction="#changeState" />
+            <Label layoutX="455.0" layoutY="14.0" text="Count">
+               <font>
+                  <Font name="Segoe Print" size="14.0" />
+               </font>
+            </Label>
+            <Label  fx:id="count" layoutX="515.0" layoutY="14.0" text="0">
+               <font>
+                  <Font name="Segoe Print" size="14.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </children>

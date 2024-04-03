@@ -41,7 +41,7 @@ public class Main extends Application {
         CreateDb createDb = new CreateDb();
         createDb.createTableUsers();
         //createDb.deleteTableRooms();
-        createDb.deleteTableApartments();
+        //createDb.deleteTableApartments();
         createDb.createTableApartments();
         createDb.createTableTypesOfRooms();
         createDb.createTableRooms();

@@ -72,7 +72,7 @@ public class ApartmentModel {
     public List<Apartment> getAllApartByIdUser(int idUser) {
         List<Apartment> apartmentList = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();
-        String sql = "SELECT id, title, description, isPublic, created_at, updated_at FROM apartments WHERE idUser = ?";
+        String sql = "SELECT id, title, description, isPublic, created_at, updated_at, numberOfVotes FROM apartments WHERE idUser = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, idUser);
             ResultSet rs = pstmt.executeQuery();
@@ -85,6 +85,7 @@ public class ApartmentModel {
                 apartment.setEditedAt(rs.getString("updated_at"));
                 apartment.setUserId(idUser);
                 apartment.setIsPublic(rs.getBoolean("isPublic"));
+                apartment.setNumberOfVotes(rs.getInt("numberOfVotes"));
                 apartmentList.add(apartment);
             }
         } catch (SQLException e) {
@@ -108,7 +109,7 @@ public class ApartmentModel {
     public List<Apartment> getAllApartWithoutUser(int idUser) {
         List<Apartment> apartmentList = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();
-        String sql = "SELECT id, title, description, isPublic, created_at, updated_at FROM apartments WHERE idUser != ?";
+        String sql = "SELECT id, title, description, isPublic, created_at, updated_at, numberOfVotes FROM apartments WHERE idUser != ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, idUser);
             ResultSet rs = pstmt.executeQuery();
@@ -121,11 +122,24 @@ public class ApartmentModel {
                 apartment.setEditedAt(rs.getString("updated_at"));
                 apartment.setUserId(idUser);
                 apartment.setIsPublic(rs.getBoolean("isPublic"));
+                apartment.setNumberOfVotes(rs.getInt("numberOfVotes"));
                 apartmentList.add(apartment);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return apartmentList;
+    }
+
+    public void changeNumberOfVotes(int numberOfVotes, int id) {
+        connection= DbConnection.getDatabaseConnection().getConnection();
+        String sql = "UPDATE apartments SET numberOfVotes = ? WHERE id = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, numberOfVotes);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

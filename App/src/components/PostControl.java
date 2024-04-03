@@ -31,8 +31,8 @@ public class PostControl extends AnchorPane {
         apartmentModel = new ApartmentModel();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Submit");
-        ButtonType buttonTypeYes = new ButtonType("Так", ButtonBar.ButtonData.YES);
-        ButtonType buttonTypeNo = new ButtonType("Ні", ButtonBar.ButtonData.NO);
+        ButtonType buttonTypeYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.NO);
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
         if(ispublic.isSelected()) {
             alert.setContentText("Are you sure you want to make this apartment public?");
