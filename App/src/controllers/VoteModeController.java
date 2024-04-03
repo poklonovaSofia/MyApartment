@@ -67,4 +67,5 @@ public class VoteModeController implements ModeControllerInterface {
             e.printStackTrace();
         }
     }
+
 }
