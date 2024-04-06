@@ -76,17 +76,17 @@
                           <DropShadow />
                       </effect>
                   </Button>
-                  <Label fx:id="labelErrorUsername" layoutX="136.0" layoutY="200.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4">
+                  <Label fx:id="labelErrorUsername" layoutX="136.0" layoutY="195.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4">
                       <font>
                           <Font name="Segoe Print Bold" size="12.0" />
                       </font>
                   </Label>
-                  <Label fx:id="labelErrorEmail" layoutX="136.0" layoutY="264.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4">
+                  <Label fx:id="labelErrorEmail" layoutX="136.0" layoutY="259.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4">
                       <font>
                           <Font name="Segoe Print Bold" size="12.0" />
                       </font>
                   </Label>
-                  <Label fx:id="labelErrorPassword" layoutX="136.0" layoutY="337.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4">
+                  <Label fx:id="labelErrorPassword" layoutX="136.0" layoutY="323.0" minHeight="18.0" minWidth="18.0" textFill="#f2b5d4" >
                       <font>
                           <Font name="Segoe Print Bold" size="12.0" />
                       </font>

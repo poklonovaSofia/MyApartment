@@ -20,7 +20,7 @@
                     </font>
                 </Label>
                 <Separator layoutX="26.0" layoutY="60.0" prefHeight="2.0" prefWidth="742.0" />
-                <Button onAction="#returnBack" layoutX="710.0" layoutY="484.0" mnemonicParsing="false" text="Cancel">
+                <Button onAction="#returnBack" layoutX="710.0" layoutY="484.0" mnemonicParsing="false" style="-fx-background-color: eff7f6;" text="Cancel">
                     <font>
                         <Font name="Segoe Print" size="13.0" />
                     </font>
