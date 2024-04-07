@@ -1,5 +1,5 @@
 
-
+package javafx11;
 import com.fasterxml.jackson.core.type.TypeReference;
 import database.CreateDb;
 import database.FillDb;
@@ -25,7 +25,7 @@ public class Main extends Application {
     private Stack<Parent> previousPages = new Stack<>();
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("views/Home.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/views/Home.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setResizable(false);
         stage.setTitle("Hello!");
