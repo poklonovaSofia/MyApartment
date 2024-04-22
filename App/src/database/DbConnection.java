@@ -16,7 +16,7 @@ public class DbConnection {
     private DbConnection() {
         try {
 
-            con = DriverManager.getConnection("jdbc:sqlite:App/myApartment.db");
+            con = DriverManager.getConnection("jdbc:sqlite:myApartment.db");
         } catch ( SQLException ex) {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }

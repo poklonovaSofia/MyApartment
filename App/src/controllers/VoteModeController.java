@@ -15,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import models.ApartmentModel;
 import models.UsersVoteModel;
 import utils.ModeControllerInterface;
+import utils.ResultsOfVote;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,6 +35,8 @@ public class VoteModeController implements ModeControllerInterface {
         List<Apartment> apartmentList =apartmentModel.getAllApartWithoutUser(user.getId());
         for(Apartment ap: apartmentList)
         {
+            ResultsOfVote resultsOfVote =new ResultsOfVote();
+            resultsOfVote.registerObserver(ap.getUserId());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/PostControlVote.fxml"));
             try {
 
@@ -48,6 +51,7 @@ public class VoteModeController implements ModeControllerInterface {
                         if (!isVoted(apa.getId(), usersVotes)) {
                             UsersVote usersVote = usersVoteModel.addUsersVote(apa.getId(), user.getId());
                             usersVotes.add(usersVote);
+                            resultsOfVote.notifyObservers(apa.getUserId(),"Someone vote for your apartment:" + apa.getTitle(), apa.getId());
                         }
 
                     }
@@ -64,6 +68,7 @@ public class VoteModeController implements ModeControllerInterface {
                             }
                             if (usersVoteToRemove != null) {
                                 usersVotes.remove(usersVoteToRemove);
+                                resultsOfVote.notifyObservers(ap.getUserId(),"Someone remove vote for your apartment:" + apa.getTitle(), apa.getId());
                             }
                         }
                     }

@@ -161,7 +161,7 @@
                         </AnchorPane>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="595.0" layoutY="18.0" prefHeight="43.0" prefWidth="190.0" style="-fx-border-color: f7d6e0;">
+                <AnchorPane  onMouseClicked="#clickedOnMyProfile" layoutX="595.0" layoutY="18.0" prefHeight="43.0" prefWidth="190.0" style="-fx-border-color: f7d6e0;">
                     <children>
                         <Label layoutX="75.0" layoutY="6.0" prefHeight="32.0" prefWidth="114.0" text="My Profile">
                             <font>

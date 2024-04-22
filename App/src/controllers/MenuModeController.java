@@ -51,4 +51,8 @@ public class MenuModeController {
     public void clickedOnStatisticsPane(MouseEvent mouseEvent) {
         loadScene("/views/StatisticsMode.fxml");
     }
+
+    public void clickedOnMyProfile(MouseEvent mouseEvent) {
+        loadScene("/views/MyProfile.fxml");
+    }
 }

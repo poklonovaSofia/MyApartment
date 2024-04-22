@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<BorderPane fx:id="mainPane" style="-fx-background-color: f2b5d4;" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.MyProfileController"
+            prefHeight="530.0" prefWidth="800.0" >
+    <AnchorPane prefHeight="532.0" prefWidth="787.0" style="-fx-background-color: f2b5d4;">
+        <children>
+            <Label layoutX="40.0" layoutY="266.0" text="Name">
+                <font>
+                    <Font name="Segoe Print" size="16.0" />
+                </font>
+            </Label>
+            <TextField fx:id="fieldUsername" layoutX="103.0" layoutY="265.0" style="-fx-background-color: eff7f6;">
+                <font>
+                    <Font name="Segoe Print" size="13.0" />
+                </font>
+            </TextField>
+            <Separator layoutX="40.0" layoutY="307.0" prefHeight="1.0" prefWidth="555.0" style="-fx-background-color: eff7f6;" />
+            <Label layoutX="40.0" layoutY="324.0" text="Email">
+                <font>
+                    <Font name="Segoe Print" size="16.0" />
+                </font>
+            </Label>
+            <TextField fx:id="fieldEmail" layoutX="103.0" layoutY="323.0" style="-fx-background-color: eff7f6;">
+                <font>
+                    <Font name="Segoe Print" size="13.0" />
+                </font>
+            </TextField>
+            <Separator layoutX="41.0" layoutY="366.0" prefHeight="3.0" prefWidth="555.0" style="-fx-background-color: eff7f6;" />
+            <Button onAction="#saveSettings" layoutX="689.0" layoutY="459.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: eff7f6;" text="Save">
+                <font>
+                    <Font name="Segoe Print" size="14.0" />
+                </font>
+            </Button>
+            <Button onAction="#returnToHome" layoutX="597.0" layoutY="459.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: eff7f6;" text="Cancel">
+                <font>
+                    <Font name="Segoe Print" size="14.0" />
+                </font>
+            </Button>
+            <Label layoutX="40.0" layoutY="33.0" text="Notifications">
+                <font>
+                    <Font name="Segoe Print" size="16.0" />
+                </font>
+            </Label>
+            <ListView fx:id="listViewOfNotifications" layoutX="40.0" layoutY="72.0" prefHeight="143.0" prefWidth="555.0" />
+            <Button onAction="#logout" layoutX="689.0" layoutY="33.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: eff7f6;" text="Logout">
+                <font>
+                    <Font name="Segoe Print" size="14.0" />
+                </font>
+            </Button>
+            <Label fx:id="labelErrorUserName" layoutX="281.0" layoutY="269.0">
+                <font>
+                    <Font name="Segoe Print" size="13.0" />
+                </font>
+            </Label>
+            <Label fx:id="labelErrorEmail" layoutX="281.0" layoutY="327.0">
+                <font>
+                    <Font name="Segoe Print" size="13.0" />
+                </font>
+            </Label>
+        </children>
+    </AnchorPane>
+
+</BorderPane>

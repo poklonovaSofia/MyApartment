@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
+import java.util.concurrent.*;
 
 public class SignUpController implements Initializable {
     private UserModel userModel;
@@ -71,55 +72,66 @@ public class SignUpController implements Initializable {
         loadScene("/views/Home.fxml", null);
     }
     @FXML
-    public void signUp(ActionEvent ae) throws PasswordException, EmailException, UsernameException {
+    public void signUp(ActionEvent ae)  {
+        labelErrorPassword.setText("");
+        labelErrorUsername.setText("");
+        labelErrorEmail.setText("");
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
         EmailValidator emailValidator = new EmailValidator();
         PasswordValidator passwordValidator = new PasswordValidator();
         UsernameValidator usernameValidator = new UsernameValidator();
-        userModel = new UserModel();
-        boolean isEmail=false, isPass=false, isUN=false, isUserAdded = false;
+        UserModel userModel = new UserModel();
+
+        Callable<Boolean> emailValidationTask = () -> emailValidator.validate(fieldEmail.getText());
+        Callable<Boolean> passwordValidationTask = () -> passwordValidator.validate(fieldPassword.getText());
+        Callable<Boolean> usernameValidationTask = () -> usernameValidator.validate(fieldUsername.getText());
+
+        boolean isEmailValid = false;
+        boolean isPasswordValid = false;
+        boolean isUsernameValid = false;
 
         try {
-            if (emailValidator.validate(fieldEmail.getText())) {
-                labelErrorEmail.setText("");
-                isEmail =true;
-            }
-        } catch (EmailException e) {
+            Future<Boolean> usernameFuture = executorService.submit(usernameValidationTask);
+            Future<Boolean> emailFuture = executorService.submit(emailValidationTask);
+            Future<Boolean> passwordFuture = executorService.submit(passwordValidationTask);
 
-            labelErrorEmail.setText(e.getMessage());
-        }
 
-        try {
-            if (passwordValidator.validate(fieldPassword.getText())) {
-                labelErrorPassword.setText("");
-                isPass = true;
-            }
-        } catch (PasswordException e) {
-            labelErrorPassword.setText(e.getMessage());
-        }
-        try {
-            if (usernameValidator.validate(fieldUsername.getText())) {
-                labelErrorUsername.setText("");
-                isUN = true;
-            }
-        } catch (UsernameException e) {
-            labelErrorUsername.setText(e.getMessage());
-        }
-        if(isEmail && isPass && isUN)
-        {
-            User user = new User( fieldEmail.getText(), fieldPassword.getText(), fieldUsername.getText());
-            if(userModel.getIdUserByUsernameEmail(user)==0)
-            {
-                try {
-                    user = userModel.addUser(user);
-                    changeToMenuMode(user);
-                }catch(UserNotAddedException ue) {
-                    labelErrorDataBase.setText(ue.getMessage());
+            try {
+                isUsernameValid = usernameFuture.get();
+                isEmailValid = emailFuture.get();
+                isPasswordValid = passwordFuture.get();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt(); // Знову встановлюємо статус перерваного потоку
+                // Логування або інша обробка InterruptedException
+            } catch (ExecutionException e) {
+                Throwable cause = e.getCause(); // Отримуємо справжню причину винятку
+                if (cause instanceof PasswordException) {
+                    labelErrorPassword.setText(cause.getMessage());
+                } else if (cause instanceof EmailException) {
+                    labelErrorEmail.setText(cause.getMessage());
+                } else if (cause instanceof UsernameException) {
+                    labelErrorUsername.setText(cause.getMessage());
+                } else {
+                    e.printStackTrace();
                 }
-
             }
 
+            if (isEmailValid && isPasswordValid && isUsernameValid) {
+                User user = new User(fieldEmail.getText(), fieldPassword.getText(), fieldUsername.getText());
+                if (userModel.getIdUserByUsernameEmail(user) == 0) {
+                    try {
+                        user = userModel.addUser(user);
+                        changeToMenuMode(user);
+                    } catch (UserNotAddedException ue) {
+                        labelErrorDataBase.setText(ue.getMessage());
+                    }
+                }
+            }
+        } finally {
+            executorService.shutdown();
         }
-            //if no
+
+        //if no
             //insert User in db
             //go to userview
             //if yes

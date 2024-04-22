@@ -110,7 +110,7 @@ public class ApartmentModel {
     public List<Apartment> getAllApartWithoutUser(int idUser) {
         List<Apartment> apartmentList = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();
-        String sql = "SELECT id, title, description, isPublic, created_at, updated_at, numberOfVotes FROM apartments WHERE idUser != ? AND isPublic = ?";
+        String sql = "SELECT id, title, description, idUser, isPublic, created_at, updated_at, numberOfVotes FROM apartments WHERE idUser != ? AND isPublic = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, idUser);
             pstmt.setInt(2, 1);
@@ -122,7 +122,7 @@ public class ApartmentModel {
                 apartment.setDescription( rs.getString("description"));
                 apartment.setCreatedAt( rs.getString("created_at"));
                 apartment.setEditedAt(rs.getString("updated_at"));
-                apartment.setUserId(idUser);
+                apartment.setUserId(rs.getInt("idUser"));
                 apartment.setIsPublic(rs.getBoolean("isPublic"));
                 apartment.setNumberOfVotes(rs.getInt("numberOfVotes"));
                 apartmentList.add(apartment);

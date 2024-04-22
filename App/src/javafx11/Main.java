@@ -53,7 +53,7 @@ public class Main extends Application {
         //createDb.deleteTableAddedFurniture();
         createDb.createTableAddedFurnitureInRoom();
         createDb.createTableUsersVotes();
-
+        createDb.createTableNotification();
 
        /* List<Furniture> furnitureList = null;
         try {

@@ -213,4 +213,22 @@ public class CreateDb {
 
         }
     }
+    public void createTableNotification() throws SQLException {
+        try {
+            Statement statement = connection.createStatement();
+            String queryCreateTable = "CREATE TABLE IF NOT EXISTS notifications ("
+                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "idUser INTEGER NOT NULL,"
+                    + "idApartment INTEGER NOT NULL,"
+                    + "message TEXT NOT NULL)";
+
+            statement.executeUpdate(queryCreateTable);
+            statement.close();
+
+        }catch (SQLException se)
+        {
+            System.out.println(se.getMessage());
+        }
+
+    }
 }
