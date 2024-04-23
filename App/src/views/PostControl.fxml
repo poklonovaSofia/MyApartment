@@ -15,7 +15,7 @@
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="82.0" prefWidth="730.0" VBox.vgrow="ALWAYS">
             <children>
-                <Hyperlink fx:id="title" layoutX="14.0" layoutY="4.0" text="">
+                <Hyperlink fx:id="title"  onAction="#showPost" layoutX="14.0" layoutY="4.0" text="">
                     <font>
                         <Font name="Segoe Print" size="14.0" />
                     </font>

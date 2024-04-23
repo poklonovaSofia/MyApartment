@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import models.ApartmentModel;
+import utils.PostListener;
+import utils.ShowPostListener;
 
 import java.util.Optional;
 
@@ -13,6 +15,11 @@ import java.util.Optional;
 public class PostControl extends AnchorPane {
     private Apartment apartment;
     private ApartmentModel apartmentModel;
+    private ShowPostListener listener;
+    public void setShowThisPost(ShowPostListener listener) {
+        this.listener = listener;
+    }
+
     @FXML
     private Label description;
     @FXML
@@ -54,5 +61,12 @@ public class PostControl extends AnchorPane {
             }
         }
 
+    }
+
+    public void showPost(ActionEvent actionEvent) {
+        if(listener != null)
+        {
+            listener.showThisPost(apartment);
+        }
     }
 }

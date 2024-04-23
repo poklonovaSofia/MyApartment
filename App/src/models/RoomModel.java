@@ -10,10 +10,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoomModel {
+    Connection connection;
     public Room addRoom(Room room) throws RoomNotAddedException {
-        Connection connection;
+
         connection= DbConnection.getDatabaseConnection().getConnection();
         String sql = "INSERT INTO rooms(title, idTypeOfRoom, idApartment) VALUES(?,?,?)";
         int userId = -1;
@@ -38,4 +41,22 @@ public class RoomModel {
     }
 
 
+    public ArrayList<Room> getAllRoomsByIdAp(int id) {
+        ArrayList<Room> rooms = new ArrayList<>();
+        connection = DbConnection.getDatabaseConnection().getConnection();
+        String sql = "SELECT id, title FROM rooms WHERE idApartment= ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Room room  = new Room();
+                room.setTitle(rs.getString("title"));
+                room.setId(rs.getInt("id"));
+                rooms.add(room);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return rooms;
+    }
 }

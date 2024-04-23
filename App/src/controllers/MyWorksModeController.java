@@ -21,6 +21,7 @@ import java.util.List;
 
 public class MyWorksModeController implements ModeControllerInterface {
     private User user;
+    private Apartment apartment;
     private ApartmentModel apartmentModel;
     public void setUser(User user){this.user=user;}
     @FXML
@@ -41,6 +42,14 @@ public class MyWorksModeController implements ModeControllerInterface {
                 MenuModeController controller = loader.getController();
                 controller.setUser(user);
             }
+            else
+            {
+                ShowWorkModeController controller = loader.getController();
+                controller.setUser(this.user);
+                controller.setApartment(apartment);
+                controller.fill();
+
+            }
             mainPane.setCenter(parent);
         }catch(IOException e)
         {
@@ -59,6 +68,10 @@ public class MyWorksModeController implements ModeControllerInterface {
                 AnchorPane content = loader.load();
                 PostControl controller = loader.getController();
                 controller.set(ap);
+                controller.setShowThisPost((apartment)->{
+                    this.apartment = apartment;
+                    loadScene("/views/ShowWorkMode.fxml", null);
+                });
                 listViewApartments.getItems().add(content);
 
             }catch (IOException e) {
