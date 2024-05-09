@@ -7,11 +7,10 @@ import java.util.Set;
 
 public class ResultsOfVote implements Subject{
     private Map<Integer, Set<Integer>> userObserversMap = new HashMap<>();
-    private Map<Integer, UserNotificationService> observers = new HashMap<>(); // Мапа для зберігання спостерігачів, ключ - ідентифікатор користувача
+    private Map<Integer, UserNotificationService> observers = new HashMap<>();
 
     @Override
     public void registerObserver(int userId) {
-        // Перевіряємо, чи є такий користувач в мапі
         if (!userObserversMap.containsKey(userId)) {
             userObserversMap.put(userId, new HashSet<>());
         }
@@ -24,10 +23,9 @@ public class ResultsOfVote implements Subject{
 
     @Override
     public void notifyObservers(int userId, String message, int idApartment) {
-        // Отримуємо список спостерігачів для даного користувача
         Set<Integer> userIds = userObserversMap.get(userId);
         if (userIds != null) {
-            // Повідомляємо всіх спостерігачів
+
             for (int observerUserId : userIds) {
                 UserNotificationService observer = observers.get(observerUserId);
                 if (observer != null) {

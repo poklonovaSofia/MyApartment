@@ -12,9 +12,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * A model class for handling furniture-related database operations.
+ */
 public class FurnitureModel {
     Connection connection;
+    /**
+     * Retrieves all furniture items of a specific type.
+     *
+     * @param id The ID of the furniture type
+     * @return A list of furniture items of the specified type
+     * @see Furniture
+     */
     public List<Furniture> getAllByIdTypeOfFurniture(int id) {
         List<Furniture> furnitures = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();
@@ -40,7 +49,12 @@ public class FurnitureModel {
         return furnitures;
 
     }
-
+    /**
+     * Adds a furniture item to a room.
+     *
+     * @param f  The ID of the furniture item to add
+     * @param id The ID of the room to add the furniture item to
+     */
     public void addFurniture(int f, int id) {
         connection= DbConnection.getDatabaseConnection().getConnection();
         String sql = "INSERT INTO addedFurniture(idFurniture, idRoom) VALUES(?,?)";
@@ -56,7 +70,13 @@ public class FurnitureModel {
 
         }
     }
-
+    /**
+     * Retrieves all furniture items added to a specific room.
+     *
+     * @param id The ID of the room
+     * @return A list of furniture items added to the room
+     * @see Furniture
+     */
     public List<Furniture> getAllFurnitureById(int id) {
         List<Integer> furnitures = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();
@@ -72,7 +92,13 @@ public class FurnitureModel {
         }
         return getAllById(furnitures);
     }
-
+    /**
+     * Retrieves all furniture items based on their IDs.
+     *
+     * @param furnInts A list of furniture IDs
+     * @return A list of furniture items
+     * @see Furniture
+     */
     private List<Furniture> getAllById(List<Integer> furnInts) {
         List<Furniture> furnitures = new ArrayList<>();
         if (furnInts == null || furnInts.isEmpty()) {

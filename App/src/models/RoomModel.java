@@ -12,9 +12,19 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * A model class for handling room-related database operations.
+ */
 public class RoomModel {
     Connection connection;
+    /**
+     * Adds a room to the database.
+     *
+     * @param room The room object to add
+     * @return The room object after addition
+     * @throws RoomNotAddedException If unable to add the room
+     * @see
+     */
     public Room addRoom(Room room) throws RoomNotAddedException {
 
         connection= DbConnection.getDatabaseConnection().getConnection();
@@ -23,7 +33,7 @@ public class RoomModel {
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, room.getTitle());
             pstmt.setInt(2, room.getIdType());
-            pstmt.setInt(3, room.getApartmentId());
+            pstmt.setInt(3, room.getInheritId());
 
             pstmt.executeUpdate();
             ResultSet generatedKeys = pstmt.getGeneratedKeys();
@@ -40,7 +50,13 @@ public class RoomModel {
         }
     }
 
-
+    /**
+     * Retrieves all rooms belonging to a specific apartment from the database.
+     *
+     * @param id The ID of the apartment
+     * @return A list of rooms belonging to the apartment
+     * @see Room
+     */
     public ArrayList<Room> getAllRoomsByIdAp(int id) {
         ArrayList<Room> rooms = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();

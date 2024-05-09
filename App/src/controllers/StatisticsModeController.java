@@ -15,23 +15,38 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import models.ApartmentModel;
+import models.UserModel;
 import utils.ModeControllerInterface;
 
 import java.io.IOException;
 import java.util.List;
 
-public class StatisticsModeController implements ModeControllerInterface {
+public class StatisticsModeController extends AbstractController implements ModeControllerInterface {
     private ApartmentModel apartmentModel;
+    private UserModel userModel;
     @FXML
     private ListView<HBox> listLeaders;
-    @FXML
-    private BorderPane mainPane;
+
     @FXML
     private AnchorPane anchorPane;
-    private User user;
+    /**
+     * Fills the user interface with statistical data regarding public apartments.
+     * This method sets up the visual representation of the statistics by creating progress bars for each apartment
+     * based on the number of votes received. It retrieves statistical information about public apartments
+     * from the {@link ApartmentModel} and calculates the progress bar values relative to the minimum and maximum
+     * number of votes among the apartments. Each progress bar is accompanied by a label displaying the name of the apartment
+     * and the ID of the user who owns it.
+     * The statistical data is displayed within a {@link ListView} component and added to the {@link AnchorPane}.
+     * Visual styling is applied to enhance the appearance of the progress bars and labels.
+     *
+     * @see ApartmentModel
+     * @see StatiscticOfApartment
+     */
+
     public void fill() {
         mainPane.getStylesheets().add("/styles/styles.css");
         apartmentModel=new ApartmentModel();
+        userModel= new UserModel();
         List<StatiscticOfApartment> statiscticOfApartmentList = apartmentModel.getAllPublicAp();
         listLeaders = new ListView<>();
         int minVal = 0;
@@ -49,7 +64,8 @@ public class StatisticsModeController implements ModeControllerInterface {
 
             progressBar.setStyle("-fx-accent: #f2b5d4;");
             progressBar.setProgress(valForAp);
-            Label label = new Label(temp.getNameOfApartment() + " " + temp.getIdUser());
+            User user = userModel.getUser(temp.getInheritId());
+            Label label = new Label(temp.getTitle() + " " + user.getUsername());
             label.setStyle("-fx-font-family: 'Segoe Print'; -fx-padding: 0 0 0 5;");
 
 
@@ -65,14 +81,13 @@ public class StatisticsModeController implements ModeControllerInterface {
 
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+
 
     public void returnBack(ActionEvent actionEvent) {
         loadScene("/views/MenuMode.fxml", user);
     }
-    private void loadScene(String fxml, User user)
+    @Override
+    protected void loadScene(String fxml, User user)
     {
         Parent parent;
         try{

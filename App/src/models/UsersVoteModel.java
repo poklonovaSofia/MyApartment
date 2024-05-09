@@ -3,24 +3,34 @@ package models;
 import database.DbConnection;
 import entities.Apartment;
 import entities.User;
-import entities.UsersVote;
+
+import entities.Vote;
 import utils.RoomNotAddedException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Handles database operations related to user votes.
+ */
 public class UsersVoteModel {
     Connection connection;
-    public List<UsersVote> getAllApartmentById(int idUser) {
-        List<UsersVote> usersVotes = new ArrayList<>();
+    /**
+     * Retrieves all votes by a specific user.
+     *
+     * @param idUser The ID of the user
+     * @return A list of user votes
+     * @see Vote
+     */
+    public List<Vote> getAllApartmentById(int idUser) {
+        List<Vote> usersVotes = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();
         String sql = "SELECT id, idUser, idApartment FROM usersVote WHERE idUser = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, idUser);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                UsersVote usersVote = new UsersVote();
+                Vote usersVote = new Vote();
                 usersVote.setId( rs.getInt("id"));
                 usersVote.setIdUser( rs.getInt("idUser"));
                 usersVote.setIdApartment( rs.getInt("idApartment"));
@@ -32,11 +42,18 @@ public class UsersVoteModel {
         }
         return usersVotes;
     }
-
-    public UsersVote addUsersVote(int id, int id1) {
+    /**
+     * Adds a vote for a user.
+     *
+     * @param id  The ID of the apartment
+     * @param id1 The ID of the user
+     * @return The user vote object after addition
+     * @see Vote
+     */
+    public Vote addUsersVote(int id, int id1) {
         connection= DbConnection.getDatabaseConnection().getConnection();
         String sql = "INSERT INTO usersVote(idUser, idApartment) VALUES(?,?)";
-        UsersVote usersVote = new UsersVote();
+        Vote usersVote = new Vote();
         usersVote.setIdApartment(id);
         usersVote.setIdUser(id1);
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -58,7 +75,29 @@ public class UsersVoteModel {
         }
         return null;
     }
-
+    public int findVoteId(int idUser, int idApartment) {
+        int voteId = -1;
+        connection = DbConnection.getDatabaseConnection().getConnection();
+        String sql = "SELECT id FROM usersVote WHERE idUser = ? AND idApartment = ? LIMIT 1";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, idUser);
+            pstmt.setInt(2, idApartment);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                voteId = rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return voteId;
+    }
+    /**
+     * Deletes a user's vote for an apartment.
+     *
+     * @param id  The ID of the apartment
+     * @param id1 The ID of the user
+     * @return The ID of the deleted vote
+     */
     public int deleteUsersVote(int id, int id1) {
         connection = DbConnection.getDatabaseConnection().getConnection();
         String sql = "DELETE FROM usersVote WHERE idUser = ? AND idApartment = ?";

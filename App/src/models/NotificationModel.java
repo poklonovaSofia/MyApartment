@@ -2,7 +2,7 @@ package models;
 
 import database.DbConnection;
 import entities.Notification;
-import entities.UsersVote;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,9 +10,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * A model class for handling notification-related database operations.
+ */
 public class NotificationModel {
     Connection connection;
+    /**
+     * Adds a notification to the database.
+     *
+     * @param notification The notification object to add
+     * @see Notification
+     */
     public void addNotification(Notification notification) {
         connection= DbConnection.getDatabaseConnection().getConnection();
         String sql = "INSERT INTO notifications(idUser, idApartment, message) VALUES(?,?,?)";
@@ -28,6 +36,13 @@ public class NotificationModel {
 
         }
     }
+    /**
+     * Retrieves all notifications for a specific user from the database.
+     *
+     * @param id The ID of the user
+     * @return A list of notifications for the user
+     * @see Notification
+     */
     public List<Notification> getAllNotificationsForUser(int id) {
         List<Notification> usersNotifications = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();

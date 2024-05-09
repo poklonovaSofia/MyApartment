@@ -14,9 +14,20 @@ import java.util.Spliterators;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-
+/**
+ * A model class for handling room type-related database operations.
+ */
 public class RoomTypeModel {
     Connection connection;
+    /**
+     * Retrieves all room types from the database.
+     *
+     * @return A list of room types
+     * @implNote This method uses Java Streams API and lambda expressions to process the ResultSet obtained from the database.
+     * It utilizes the StreamSupport class to convert the ResultSet into a Stream, and then uses lambda expressions to map each row of the ResultSet
+     * to a RoomType object.
+     * @see RoomType
+     */
     public List<RoomType> getAllTypes() {
         List<RoomType> roomTypes = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();

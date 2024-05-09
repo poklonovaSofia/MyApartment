@@ -19,7 +19,7 @@ import java.sql.Connection;
 import java.util.ResourceBundle;
 import java.util.concurrent.*;
 
-public class SignUpController implements Initializable {
+public class SignUpController extends AbstractController implements Initializable {
     private UserModel userModel;
     @FXML
     private Label labelErrorDataBase;
@@ -35,8 +35,7 @@ public class SignUpController implements Initializable {
     @FXML
     private Hyperlink linkToReturn;
 
-    @FXML
-    private BorderPane mainPane;
+
     @FXML
     private TextField fieldUsername;
     @FXML
@@ -51,7 +50,8 @@ public class SignUpController implements Initializable {
     public void changeToMenuMode(User user) {
         loadScene("/views/MenuMode.fxml", user);
     }
-    private void loadScene(String fxml, User user)
+    @Override
+    protected void loadScene(String fxml, User user)
     {
         Parent parent;
         try{
@@ -71,6 +71,21 @@ public class SignUpController implements Initializable {
     public void returnHome(ActionEvent ae) {
         loadScene("/views/Home.fxml", null);
     }
+    /**
+     * Handles the sign-up process for a new user.
+     * This method validates the input email, password, and username using corresponding validators:
+     * {@link EmailValidator}, {@link PasswordValidator}, and {@link UsernameValidator}.
+     * It creates tasks for each validation using {@link Callable} interface and submits them to an {@link ExecutorService}.
+     * Once the validation tasks are completed, it retrieves the validation results.
+     * If all validations pass, it creates a new user object with the provided credentials and attempts to add it to the database using {@link UserModel}.
+     * If the user is successfully added, it transitions to the menu mode interface with the new user.
+     * If any validation fails or an exception occurs during the sign-up process, appropriate error messages are displayed.
+     * Additionally, if a runtime error related to RTTI (Run-Time Type Identification) occurs during the execution of validation tasks,
+     * it prints the stack trace and displays the corresponding error message.
+     * Finally, the executor service is shut down.
+     *
+     * @param ae the {@link ActionEvent} representing the action event that triggered this method.
+     */
     @FXML
     public void signUp(ActionEvent ae)  {
         labelErrorPassword.setText("");
@@ -101,10 +116,9 @@ public class SignUpController implements Initializable {
                 isEmailValid = emailFuture.get();
                 isPasswordValid = passwordFuture.get();
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt(); // Знову встановлюємо статус перерваного потоку
-                // Логування або інша обробка InterruptedException
+                Thread.currentThread().interrupt();
             } catch (ExecutionException e) {
-                Throwable cause = e.getCause(); // Отримуємо справжню причину винятку
+                Throwable cause = e.getCause();
                 if (cause instanceof PasswordException) {
                     labelErrorPassword.setText(cause.getMessage());
                 } else if (cause instanceof EmailException) {
@@ -130,13 +144,6 @@ public class SignUpController implements Initializable {
         } finally {
             executorService.shutdown();
         }
-
-        //if no
-            //insert User in db
-            //go to userview
-            //if yes
-            //throw
-
     }
 }
 

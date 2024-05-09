@@ -10,18 +10,23 @@ import javafx.scene.layout.BorderPane;
 import utils.ModeControllerInterface;
 
 import java.io.IOException;
+/**
+ * Controller class responsible for managing the main menu interface of the application.
+ * This class handles user interactions with menu panes, loads corresponding scenes,
+ * and provides access to user information. It extends {@link AbstractController}
+ * to inherit common controller functionalities.
+ */
+public class MenuModeController extends AbstractController{
 
-public class MenuModeController {
-    private User user;
     @FXML
     private BorderPane mainPane;
     @FXML
     public void clickedOnCreatePane(MouseEvent mouseEvent) {
         loadScene("/views/CreateSettingsMode.fxml");
     }
-    public void setUser(User user){this.user=user;}
     public User getUser(){return user;}
-    private void loadScene(String fxml)
+
+    protected void loadScene(String fxml)
     {
         Parent parent;
         try{

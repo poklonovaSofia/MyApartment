@@ -15,18 +15,25 @@ import utils.ModeControllerInterface;
 
 import java.io.IOException;
 
-public class ShowWorkModeController implements ModeControllerInterface {
+public class ShowWorkModeController extends AbstractController implements ModeControllerInterface {
 
     @FXML
     private Label nameOfSubject;
     private RoomModel roomModel;
     private FurnitureModel furnitureModel;
-    private User user;
+
     private Apartment apartment;
     @FXML
     private TreeView apartmentTree;
-    @FXML
-    private BorderPane mainPane;
+    /**
+     * Fills the interface with the details of the current apartment.
+     * This method retrieves all rooms associated with the apartment from the database using {@link RoomModel}.
+     * It also retrieves all furniture associated with each room using {@link FurnitureModel}.
+     * The method sets the name of the subject (apartment) in the interface.
+     * It then populates a tree view (apartmentTree) with the rooms and their associated furniture.
+     * Each room is represented as a parent node, and its associated furniture items are children nodes.
+     * If an IOException occurs during loading, it throws a RuntimeException.
+     */
     public void fill() {
         roomModel = new RoomModel();
         furnitureModel = new FurnitureModel();
@@ -46,9 +53,6 @@ public class ShowWorkModeController implements ModeControllerInterface {
         }
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public void setApartment(Apartment apartment) {
         this.apartment = apartment;
@@ -57,7 +61,8 @@ public class ShowWorkModeController implements ModeControllerInterface {
     public void returnToHome(ActionEvent actionEvent) {
         loadScene("/views/MyWorksMode.fxml", user);
     }
-    private void loadScene(String fxml, User user)
+    @Override
+    protected void loadScene(String fxml, User user)
     {
         Parent parent;
         try{

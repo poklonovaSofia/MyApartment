@@ -2,9 +2,8 @@ package entities;
 
 import java.io.Serializable;
 
-public class Furniture implements Serializable {
-    private int id;
-    private String title;
+public class Furniture extends EntityAccommodation implements Serializable {
+
     private String description;
     private String image;
     private float width;
@@ -16,17 +15,6 @@ public class Furniture implements Serializable {
     public Furniture() {
 
     }
-
-    public int getId(){return this.id;}
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -53,11 +41,6 @@ public class Furniture implements Serializable {
 
     public int getIdFurnitureType() {
         return idFurnitureType;
-    }
-
-    // Setters
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public void setDescription(String description) {
@@ -90,6 +73,6 @@ public class Furniture implements Serializable {
     @Override
     public String toString()
     {
-        return title;
+        return getTitle();
     }
 }

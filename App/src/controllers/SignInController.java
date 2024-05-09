@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SignInController implements Initializable {
+public class SignInController extends AbstractController implements Initializable {
     private UserModel userModel;
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -30,14 +30,13 @@ public class SignInController implements Initializable {
     private Label labelErrorMessage;
     @FXML
     private Hyperlink linkToReturn;
-    @FXML
-    private BorderPane mainPane;
+
     @FXML
     public void changeToSignUp(ActionEvent actionEvent) {
         loadScene("/views/SignUp.fxml", null);
     }
-
-    private void loadScene(String fxml, User user)
+    @Override
+    protected void loadScene(String fxml, User user)
     {
         Parent parent;
         try{
@@ -62,6 +61,15 @@ public class SignInController implements Initializable {
     public void changeToMenuMode(User user) {
         loadScene("/views/MenuMode.fxml", user);
     }
+    /**
+     * Handles the sign-in process for the user.
+     * This method retrieves the user's input email and password from the corresponding text fields.
+     * It then attempts to find a user with the provided email and password using {@link UserModel}.
+     * If a user is found, it transitions to the menu mode interface, passing the user object to the next scene.
+     * If no user is found, it displays an error message indicating incorrect email or password.
+     *
+     * @param actionEvent the {@link ActionEvent} representing the action event that triggered this method.
+     */
     public void signIn(ActionEvent actionEvent) {
         userModel = new UserModel();
         User user=userModel.findUser(new User(fieldEmail.getText(), fieldPassword.getText(), ""));

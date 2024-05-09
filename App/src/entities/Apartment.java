@@ -4,42 +4,25 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Apartment {
-    private int id;
-    private String title;
+public class Apartment extends EntityAccommodation {
     private String description;
     private ArrayList<Room> rooms;
     private String createdAt;
     private String updatedAt;
     private Boolean isPublic;
-    private int userId;
-    private int numberOfVotes;
+    protected int numberOfVotes;
     public Apartment()
     {
         rooms= new ArrayList<Room>();
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
     public int getNumberOfVotes() {
         return numberOfVotes;
     }
 
     public void setNumberOfVotes(int numberOfVotes) {
         this.numberOfVotes = numberOfVotes;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
     public String getDescription() {
         return description;
@@ -73,13 +56,7 @@ public class Apartment {
         this.updatedAt = editedAt;
     }
 
-    public int getUserId() {
-        return userId;
-    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public void setIsPublic(boolean selected) {
         isPublic = selected;

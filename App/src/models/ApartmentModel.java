@@ -14,6 +14,13 @@ import java.util.List;
 
 public class ApartmentModel {
     Connection connection;
+    /**
+     * Checks if there exists an apartment name for the user with the specified ID.
+     *
+     * @param title  The apartment name to check
+     * @param userId The ID of the user
+     * @return true if an apartment with the given name and user exists; otherwise, false
+     */
     public boolean existUsersApartmentName(String title, int userId) {
         connection= DbConnection.getDatabaseConnection().getConnection();
         String sql = "SELECT COUNT(*) AS count FROM apartments WHERE title = ? AND idUser = ?";
@@ -29,6 +36,14 @@ public class ApartmentModel {
         return false;
     }
 
+     /**
+     * Adds an apartment to the database.
+     *
+     * @param apartment The apartment object to add
+     * @return The apartment object after addition
+     * @throws ApartmentNotAddedException If unable to add the apartment
+     * @see Apartment
+     */
     public Apartment addApartment(Apartment apartment) throws ApartmentNotAddedException {
         connection= DbConnection.getDatabaseConnection().getConnection();
         String sql = "INSERT INTO apartments(title, description, idUser, created_at, updated_at, isPublic, numberOfVotes) VALUES(?,?,?,?,?,?,?)";
@@ -36,7 +51,7 @@ public class ApartmentModel {
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, apartment.getTitle());
             pstmt.setString(2, apartment.getDescription());
-            pstmt.setInt(3, apartment.getUserId());
+            pstmt.setInt(3, apartment.getInheritId());
             apartment.setCreatedAt(LocalDateTime.now().toString());
             apartment.setEditedAt(apartment.getCreatedAt());
             pstmt.setString(4, apartment.getCreatedAt());
@@ -57,6 +72,10 @@ public class ApartmentModel {
             throw new ApartmentNotAddedException("Failed to create apartment");
         }
     }
+    /**
+     * Updates the last modified date of the apartment with the specified ID.
+     * @param id The ID of the apartment to update
+     */
     public void updateApartment(int id) {
         connection= DbConnection.getDatabaseConnection().getConnection();
         String sql = "UPDATE apartments SET updated_at = ? WHERE id = ?";
@@ -69,7 +88,13 @@ public class ApartmentModel {
         }
 
     }
-
+    /**
+     * Retrieves all apartments belonging to a specific user.
+     *
+     * @param idUser The ID of the user
+     * @return A list of apartments belonging to the user
+     * @see Apartment
+     */
     public List<Apartment> getAllApartByIdUser(int idUser) {
         List<Apartment> apartmentList = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();
@@ -84,7 +109,7 @@ public class ApartmentModel {
                 apartment.setDescription( rs.getString("description"));
                 apartment.setCreatedAt( rs.getString("created_at"));
                 apartment.setEditedAt(rs.getString("updated_at"));
-                apartment.setUserId(idUser);
+                apartment.setInheritId(idUser);
                 apartment.setIsPublic(rs.getBoolean("isPublic"));
                 apartment.setNumberOfVotes(rs.getInt("numberOfVotes"));
                 apartmentList.add(apartment);
@@ -94,7 +119,12 @@ public class ApartmentModel {
         }
         return apartmentList;
     }
-
+    /**
+     * Changes the privacy state of the apartment with the specified ID.
+     *
+     * @param id       The ID of the apartment to update
+     * @param isPublic The new privacy state (true for public, false for private)
+     */
     public void changeStateOfPrivacy(int id, Boolean isPublic) {
         connection= DbConnection.getDatabaseConnection().getConnection();
         String sql = "UPDATE apartments SET isPublic = ? WHERE id = ?";
@@ -106,7 +136,13 @@ public class ApartmentModel {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Retrieves all public apartments except those owned by a specific user.
+     *
+     * @param idUser The ID of the user
+     * @return A list of public apartments excluding those owned by the user
+     * @see Apartment
+     */
     public List<Apartment> getAllApartWithoutUser(int idUser) {
         List<Apartment> apartmentList = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();
@@ -122,7 +158,7 @@ public class ApartmentModel {
                 apartment.setDescription( rs.getString("description"));
                 apartment.setCreatedAt( rs.getString("created_at"));
                 apartment.setEditedAt(rs.getString("updated_at"));
-                apartment.setUserId(rs.getInt("idUser"));
+                apartment.setInheritId(rs.getInt("idUser"));
                 apartment.setIsPublic(rs.getBoolean("isPublic"));
                 apartment.setNumberOfVotes(rs.getInt("numberOfVotes"));
                 apartmentList.add(apartment);
@@ -132,7 +168,12 @@ public class ApartmentModel {
         }
         return apartmentList;
     }
-
+    /**
+     * Updates the number of votes for a specific apartment.
+     *
+     * @param numberOfVotes The new number of votes
+     * @param id The ID of the apartment
+     */
     public void changeNumberOfVotes(int numberOfVotes, int id) {
         connection= DbConnection.getDatabaseConnection().getConnection();
         String sql = "UPDATE apartments SET numberOfVotes = ? WHERE id = ?";
@@ -144,7 +185,12 @@ public class ApartmentModel {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Retrieves a list of public apartments along with their statistics.
+     *
+     * @return A list of public apartments with their statistics
+     * @see StatiscticOfApartment
+     */
     public List<StatiscticOfApartment> getAllPublicAp() {
         List<StatiscticOfApartment> statiscticOfApartments = new ArrayList<>();
         connection = DbConnection.getDatabaseConnection().getConnection();
@@ -155,9 +201,9 @@ public class ApartmentModel {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 StatiscticOfApartment statiscticOfApartment = new StatiscticOfApartment();
-                statiscticOfApartment.setIdApartment( rs.getInt("id"));
-                statiscticOfApartment.setNameOfApartment( rs.getString("title"));
-                statiscticOfApartment.setIdUser( rs.getInt("idUser"));
+                statiscticOfApartment.setId( rs.getInt("id"));
+                statiscticOfApartment.setTitle( rs.getString("title"));
+                statiscticOfApartment.setInheritId( rs.getInt("idUser"));
                 statiscticOfApartment.setNumberOfVotes( rs.getInt("numberOfVotes"));
                 statiscticOfApartments.add(statiscticOfApartment);
             }

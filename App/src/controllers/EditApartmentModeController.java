@@ -18,18 +18,17 @@ import models.*;
 import java.io.IOException;
 import java.util.List;
 
-public class EditApartmentModeController {
+public class EditApartmentModeController extends AbstractController {
     private FurnitureTypeModel furnitureTypeModel;
     private FurnitureModel furnitureModel;
     private List<FurnitureType> furnitureTypeList;
-    private User user;
+
     private ApartmentModel apartmentModel;
     private RoomModel roomModel;
     private Apartment apartment;
     @FXML
     private TabPane mainTabs;
-    @FXML
-    private BorderPane mainPane;
+
     public void setApartment(Apartment apartment) {
         this.apartment =apartment;
     }
@@ -60,28 +59,14 @@ public class EditApartmentModeController {
     public void returnBack(ActionEvent actionEvent) {
         loadScene("/views/MenuMode.fxml", user);
     }
-    private void loadScene(String fxml, User user)
-    {
-        Parent parent;
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            parent = loader.load();
 
-            if(user!=null) {
-                MenuModeController controller = loader.getController();
-                controller.setUser(user);
-            }
-            mainPane.setCenter(parent);
-        }catch(IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
 
-    public void setUser(User user) {
-        this.user =user;
-    }
 
+    /**
+     * Saves changes made to the apartment and its associated furniture.
+     *
+     * @param actionEvent the {@link ActionEvent} representing the action event that triggered this method.
+     */
     public void saveApartment(ActionEvent actionEvent) {
         apartmentModel=new ApartmentModel();
         furnitureModel = new FurnitureModel();

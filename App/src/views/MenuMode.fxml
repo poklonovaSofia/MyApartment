@@ -13,18 +13,7 @@
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="530.0" prefWidth="800.0" style="-fx-background-color: f2b5d4; -fx-border-color: f7d6e0; -fx-border-width: 5;" VBox.vgrow="ALWAYS">
             <children>
-                <Label layoutX="22.0" layoutY="18.0" text="MyApartment">
-                    <font>
-                        <Font name="Segoe Print" size="24.0" />
-                    </font>
-                    <effect>
-                        <DropShadow>
-                            <color>
-                                <Color opacity="0.4000000059604645" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                </Label>
+
                 <AnchorPane layoutX="179.0" layoutY="127.0" prefHeight="160.0" prefWidth="190.0" style="-fx-background-color: eff7f6; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: f7d6e0;">
                     <effect>
                         <DropShadow radius="20.1025" spread="0.18" width="61.41">

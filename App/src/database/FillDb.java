@@ -8,9 +8,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
+/**
+ * The FillDb class provides methods to insert data into various tables of the database.
+ */
 public class FillDb {
 
+    /**
+     * Inserts types of rooms into the 'typesOfRooms' table in the database.
+     */
     public void insertTypesOfRooms() {
         Connection connection = DbConnection.getDatabaseConnection().getConnection();
         String[] roomTypes = {
@@ -33,6 +38,9 @@ public class FillDb {
             System.out.println(e.getMessage());
         }
     }
+    /**
+     * Inserts types of furniture into the 'typesOfFurnitures' table in the database.
+     */
     public void insertTypesOfFurnitures() {
         Connection connection = DbConnection.getDatabaseConnection().getConnection();
         String[] furnitureTypes = {
@@ -64,7 +72,10 @@ public class FillDb {
         }
     }
 
-
+    /**
+     * Inserts a list of furniture objects into the 'furnitures' table in the database.
+     * @param furnitureList The list of Furniture objects to be inserted
+     */
     public void insertFurnitures(List<Furniture> furnitureList) {
         Connection connection = DbConnection.getDatabaseConnection().getConnection();
 

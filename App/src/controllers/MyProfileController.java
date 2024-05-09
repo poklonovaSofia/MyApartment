@@ -22,22 +22,26 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.*;
 
-public class MyProfileController implements ModeControllerInterface {
+public class MyProfileController extends AbstractController implements ModeControllerInterface {
     @FXML
     private Label labelErrorUserName;
     @FXML
     private Label labelErrorEmail;
-    private User user;
+
     private NotificationModel notificationModel;
     private UserModel userModel;
-    @FXML
-    private BorderPane mainPane;
+
     @FXML
     private TextField fieldUsername;
     @FXML
     private TextField fieldEmail;
     @FXML
     private ListView<Notification> listViewOfNotifications;
+    /**
+     * Fills the user profile interface with user information and notifications.
+     * This method sets the username and email fields with the current user's information.
+     * It also retrieves all notifications for the user from the database using {@link NotificationModel}
+     */
     public void fill() {
         fieldUsername.setText(user.getUsername());
         fieldEmail.setText(user.getEmail());
@@ -48,35 +52,25 @@ public class MyProfileController implements ModeControllerInterface {
         listViewOfNotifications.refresh();
     }
 
-    public void setUser(User user) {
-        this.user=user;
-    }
+
 
     public void returnToHome(ActionEvent actionEvent) {
         loadScene("/views/MenuMode.fxml", user);
     }
-    private void loadScene(String fxml, User user)
-    {
-        Parent parent;
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            parent = loader.load();
 
-            if(user!=null) {
-                MenuModeController controller = loader.getController();
-                controller.setUser(user);
-            }
-            mainPane.setCenter(parent);
-        }catch(IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
 
     public void logout(ActionEvent actionEvent) {
         loadScene("/views/Home.fxml", null);
     }
-
+    /**
+     * Saves the user settings changes.
+     * This method retrieves the new username and email entered by the user in the text fields.
+     * It validates the new username and email using {@link UsernameValidator} and {@link EmailValidator} respectively.
+     * If the validation passes, it updates the user's username and email in the database using {@link UserModel}.
+     * Any error messages encountered during validation or updating are displayed on corresponding error labels.
+     *
+     * @param actionEvent the {@link ActionEvent} representing the action event that triggered this method.
+     */
     public void saveSettings(ActionEvent actionEvent) {
         userModel = new UserModel();
         labelErrorUserName.setText("");

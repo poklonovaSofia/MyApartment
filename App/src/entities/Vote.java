@@ -1,11 +1,10 @@
 package entities;
 
-public class UsersVote {
+public class Vote {
     private int id;
     private int idApartment;
     private int idUser;
 
-    // Геттер для поля id
     public int getId() {
         return id;
     }

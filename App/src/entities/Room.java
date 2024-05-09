@@ -2,28 +2,10 @@ package entities;
 
 import java.util.List;
 
-public class Room {
-    private int id;
+public class Room extends EntityAccommodation{
+
     private int idType;
-    private String title;
-    private int apartmentId;
     private List<Furniture> furnitureList;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
 
     public int getIdType() {
         return idType;
@@ -33,13 +15,6 @@ public class Room {
         this.idType = idType;
     }
 
-    public int getApartmentId() {
-        return apartmentId;
-    }
-
-    public void setApartmentId(int apartmentId) {
-        this.apartmentId = apartmentId;
-    }
 
     public List<Furniture> getFurnitureList() {
         return furnitureList;
@@ -50,6 +25,6 @@ public class Room {
     }
    @Override
    public String toString() {
-       return title;
+       return getTitle();
    }
 }

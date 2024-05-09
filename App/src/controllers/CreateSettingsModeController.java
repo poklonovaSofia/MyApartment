@@ -24,7 +24,7 @@ import utils.RoomNotAddedException;
 import java.io.IOException;
 import java.util.Objects;
 
-public class CreateSettingsModeController extends MenuModeController implements ModeControllerInterface {
+public class CreateSettingsModeController extends AbstractController implements ModeControllerInterface {
     private ApartmentModel apartmentModel;
     private RoomModel roomModel;
     private RoomTypeModel roomTypeModel;
@@ -47,9 +47,13 @@ public class CreateSettingsModeController extends MenuModeController implements 
     private Label labelErrorRoomName;
     @FXML
     private TextArea descriptionField;
-    private User user;
-    public void setUser(User user){this.user = user;}
 
+    /**
+     * Fills the user interface component with a list of room types retrieved from the database.
+     * This method initializes a {@link RoomTypeModel} to fetch all available room types from the database,
+     * creates an {@link ObservableList} from the retrieved room types, and sets this list as the items
+     * for the {@code roomsTypesList} user interface component.
+     */
     public void fill() {
         roomTypeModel = new RoomTypeModel();
         ObservableList<RoomType> observableRoomTypes = FXCollections.observableArrayList(roomTypeModel.getAllTypes());
@@ -59,6 +63,7 @@ public class CreateSettingsModeController extends MenuModeController implements 
     public void clickedCancel(ActionEvent actionEvent) {
         loadScene("/views/MenuMode.fxml", user);
     }
+
     private void loadScene(String fxml, Apartment apartment)
     {
 
@@ -79,7 +84,8 @@ public class CreateSettingsModeController extends MenuModeController implements 
             e.printStackTrace();
         }
     }
-    private void loadScene(String fxml, User user)
+    @Override
+    protected void loadScene(String fxml, User user)
     {
 
         Parent parent;
@@ -97,6 +103,14 @@ public class CreateSettingsModeController extends MenuModeController implements 
             e.printStackTrace();
         }
     }
+    /**
+     * Handles the event when an item is clicked in the user interface.
+     * This method creates a new {@link Room} object based on the selected room type from the {@code roomsTypesList}.
+     * If a room of the selected type already exists in the {@code usersRoomsList}, a unique name is generated
+     * for the new room by appending a numerical suffix. The new room is then added to the {@code usersRoomsList}.
+     *
+     * @param mouseEvent the {@link MouseEvent} representing the mouse click event that triggered this method.
+     */
     @FXML
     public void onItemClicked(MouseEvent mouseEvent) {
         Room newRoom = new Room();
@@ -138,7 +152,15 @@ public class CreateSettingsModeController extends MenuModeController implements 
 
 
     }
-
+    /**
+     * Handles the event when an item is double-clicked in the user interface.
+     * If the mouse event represents a double click (i.e., {@code getClickCount() == 2}),
+     * the method removes the selected room from the {@code usersRoomsList} and clears the {@code nameOfRoomField}.
+     * If the mouse event represents a single click (i.e., {@code getClickCount() == 1}),
+     * the method updates the {@code nameOfRoomField} with the title of the selected room for potential editing.
+     *
+     * @param mouseEvent the {@link MouseEvent} representing the mouse click event that triggered this method.
+     */
     public void ItemDoubleClick(MouseEvent mouseEvent) {
         Room selectedRoom = usersRoomsList.getSelectionModel().getSelectedItem();
         if (mouseEvent.getClickCount() == 2) {
@@ -158,7 +180,12 @@ public class CreateSettingsModeController extends MenuModeController implements 
             }
         }
     }
-
+    /**
+     * Renames the selected room with the new name provided in the {@code nameOfRoomField}.
+     * If the new name is already assigned to another room, an error message is displayed.
+     *
+     * @param actionEvent the {@link ActionEvent} representing the action event that triggered this method.
+     */
     public void renameRoom(ActionEvent actionEvent) {
         boolean isExistNewName =false;
         if(nameOfRoomField.getText().length() !=0)
@@ -186,7 +213,14 @@ public class CreateSettingsModeController extends MenuModeController implements 
             }
         }
     }
-
+    /**
+     * Creates a new apartment based on the information provided in the user interface fields.
+     * If the apartment name is not provided or already exists, appropriate error messages are displayed.
+     *
+     * @param actionEvent the {@link ActionEvent} representing the action event that triggered this method.
+     * @throws ApartmentNotAddedException if an error occurs while adding the apartment to the database.
+     * @throws RoomNotAddedException if an error occurs while adding a room to the database.
+     */
     public void createApartment(ActionEvent actionEvent) throws ApartmentNotAddedException, RoomNotAddedException {
         if(nameOfApartmentField.getText().length() != 0)
         {
@@ -198,14 +232,14 @@ public class CreateSettingsModeController extends MenuModeController implements 
             else {
                 Apartment apartment = new Apartment();
                 apartment.setTitle(nameOfApartmentField.getText());
-                apartment.setUserId(user.getId());
+                apartment.setInheritId(user.getId());
                 apartment.setDescription(descriptionField.getText());
                 apartment.setIsPublic(ispublic.isSelected());
                 apartment= apartmentModel.addApartment(apartment);
                 roomModel = new RoomModel();
                 for(Room room: usersRoomsList.getItems())
                 {
-                    room.setApartmentId(apartment.getId());
+                    room.setInheritId(apartment.getId());
                     room = roomModel.addRoom(room);
                     apartment.getRooms().add(room);
                 }

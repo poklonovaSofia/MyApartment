@@ -19,19 +19,19 @@ import utils.ModeControllerInterface;
 import java.io.IOException;
 import java.util.List;
 
-public class MyWorksModeController implements ModeControllerInterface {
-    private User user;
+public class MyWorksModeController extends AbstractController implements ModeControllerInterface {
+
     private Apartment apartment;
     private ApartmentModel apartmentModel;
-    public void setUser(User user){this.user=user;}
-    @FXML
-    private BorderPane mainPane;
+
+
     @FXML
     private ListView<AnchorPane> listViewApartments;
     public void returnBack(ActionEvent actionEvent) {
         loadScene("/views/MenuMode.fxml", user);
     }
-    private void loadScene(String fxml, User user)
+    @Override
+    protected void loadScene(String fxml, User user)
     {
         Parent parent;
         try{
@@ -56,7 +56,14 @@ public class MyWorksModeController implements ModeControllerInterface {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Fills the user profile interface with the user's apartments.
+     * This method retrieves all apartments associated with the user from the database using {@link ApartmentModel}.
+     * For each apartment, it loads the corresponding PostControl FXML file and sets its controller properties.
+     * It then adds the loaded content (AnchorPane) to the listViewApartments.
+     * Additionally, it sets up a callback function for showing the details of a selected apartment.
+     * If an IOException occurs during loading, it throws a RuntimeException.
+     */
     public void fill() {
         apartmentModel=new ApartmentModel();
         List<Apartment> apartmentList =apartmentModel.getAllApartByIdUser(user.getId());
