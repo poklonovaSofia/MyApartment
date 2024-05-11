@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"components"},{"l":"controllers"},{"l":"database"},{"l":"entities"},{"l":"javafx11"},{"l":"models"},{"l":"utils"}];updateSearchResults();
